@@ -11,6 +11,8 @@ import com.just.core.common.AuthModel;
 import com.just.core.http.HttpEngine;
 import com.just.core.http.HttpTask;
 import com.just.core.listener.MessageCallbackListener;
+import com.just.core.message.RequestBody;
+import com.just.core.message.RequestHeader;
 import com.just.core.message.ResponseMessage;
 import com.just.core.util.MD5;
 
@@ -41,6 +43,12 @@ public class LoginActivity extends BaseActivity {
         @Override
         public void onClick(View view) {
             Log.i("danxx", "onClick toMainWindows");
+
+//            ARouter.getInstance()
+//                    .build(ARouterPath.MainAty)
+//                    /**可以针对性跳转跳转动画*/
+//                    .withTransition(R.anim.activity_up_in, R.anim.activity_up_out)
+//                    .navigation(LoginActivity.this);
 
             /**
              * 启动校验
@@ -86,15 +94,26 @@ public class LoginActivity extends BaseActivity {
             initHttpTask();
         }
 
+        RequestBody body = new RequestBody();
+        RequestHeader header = new RequestHeader();
+
+        body.setItemValue("userName", "admin");
+        body.setItemValue("password", MD5.md5("1"));
+
+        header.setDataType(2);
+
+        httpTask.getRequestMessage().body = body;
+        httpTask.getRequestMessage().header = header;
+
         // 验证模式
-        httpTask.getRequestMessage().header.getHttpHeader().setAuthModel(AuthModel.AUTH_LOGIN);
+//        httpTask.getRequestMessage().header.getHttpHeader().setAuthModel(AuthModel.AUTH_LOGIN);
 
 //            httpTask.getRequestMessage().body.setItemParaListWithKeys(
 //                    "userName", binding.username.getText().toString(),
 //                    "password", binding.password.getText().toString()
 //            );
-        httpTask.getRequestMessage().body.setItemValue("userName", "admin");
-        httpTask.getRequestMessage().body.setItemValue("password", MD5.md5("1"));
+//        httpTask.getRequestMessage().body.setItemValue("userName", "admin");
+//        httpTask.getRequestMessage().body.setItemValue("password", MD5.md5("1"));
 
         Log.e("--HttpUtil", "[HTTP RQ]" + httpTask.getRequestMessage().toJSON());
 
