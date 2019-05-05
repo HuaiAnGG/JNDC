@@ -7,6 +7,12 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.just.core.common.AuthModel;
+import com.just.core.http.HttpEngine;
+import com.just.core.http.HttpTask;
+import com.just.core.listener.MessageCallbackListener;
+import com.just.core.message.ResponseMessage;
+import com.just.core.util.MD5;
 
 import google.architecture.common.base.ARouterPath;
 import google.architecture.common.base.BaseActivity;
@@ -18,6 +24,7 @@ import google.architecture.login.databinding.ActivityLoginBinding;
 public class LoginActivity extends BaseActivity {
 
     private ActivityLoginBinding binding;
+    private HttpTask httpTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +41,66 @@ public class LoginActivity extends BaseActivity {
         @Override
         public void onClick(View view) {
             Log.i("danxx", "onClick toMainWindows");
-            ARouter.getInstance()
-                    .build(ARouterPath.MainAty)
-                    /**可以针对性跳转跳转动画*/
-                    .withTransition(R.anim.activity_up_in, R.anim.activity_up_out)
-                    .navigation(LoginActivity.this);
+
+            /**
+             * 启动校验
+             */
+//            doTask();
         }
     };
+
+    private void initHttpTask() {
+
+        httpTask = new HttpTask("A024", "loginApp",
+                new MessageCallbackListener() {
+                    @Override
+                    public void onWaiting(HttpTask httpTask) {
+
+                    }
+
+                    @Override
+                    public void onMessageResponse(HttpTask httpTask, ResponseMessage responseMessage) {
+                        Log.i("onMessageResponse: ", responseMessage.toString());
+
+                        ARouter.getInstance()
+                                .build(ARouterPath.MainAty)
+                                /**可以针对性跳转跳转动画*/
+                                .withTransition(R.anim.activity_up_in, R.anim.activity_up_out)
+                                .navigation(LoginActivity.this);
+                    }
+
+                    @Override
+                    public void onFinished(HttpTask httpTask) {
+
+                    }
+
+                    @Override
+                    public void onUploading(HttpTask httpTask, long l, long l1) {
+
+                    }
+                });
+    }
+    
+    private void doTask() {
+        if (httpTask == null) {
+            initHttpTask();
+        }
+
+        // 验证模式
+        httpTask.getRequestMessage().header.getHttpHeader().setAuthModel(AuthModel.AUTH_LOGIN);
+
+//            httpTask.getRequestMessage().body.setItemParaListWithKeys(
+//                    "userName", binding.username.getText().toString(),
+//                    "password", binding.password.getText().toString()
+//            );
+        httpTask.getRequestMessage().body.setItemValue("userName", "admin");
+        httpTask.getRequestMessage().body.setItemValue("password", MD5.md5("1"));
+
+        Log.e("--HttpUtil", "[HTTP RQ]" + httpTask.getRequestMessage().toJSON());
+
+        HttpEngine.getInstance().emit(httpTask);
+    }
+
 
     /**
      * 事件点击监听接口
