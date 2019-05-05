@@ -1,4 +1,4 @@
-# GoogleArchitectureDemo
+# JNPOWER
 谷歌最新MVVM架构，基于dataBinding、lifecycle、retrofit2、rxjava2、okhttp、fresco。
 
 >[简书博客地址:http://www.jianshu.com/p/c0988e7f31fd](http://www.jianshu.com/p/c0988e7f31fd)
