@@ -16,7 +16,6 @@ import google.architecture.common.base.ARouterPath;
 import google.architecture.common.base.BaseActivity;
 import google.architecture.common.base.BaseFragment;
 import google.architecture.common.widget.NoScrollViewPager;
-import google.architecture.girls.FragmentGirls;
 import google.architecture.specific.databinding.ActivityMainBinding;
 
 @Route(path = ARouterPath.MainAty)
@@ -43,7 +42,7 @@ public class ActivityMain extends BaseActivity {
                 mPager.setCurrentItem(2);
                 return true;
             } else if (i == R.id.navigation_about_me) {
-                mPager.setCurrentItem(3);
+                mPager.setCurrentItem(2);
                 return true;
             }
             return false;
@@ -65,14 +64,14 @@ public class ActivityMain extends BaseActivity {
         mPager.setOffscreenPageLimit(3);
 
         BaseFragment fragmentNews = (BaseFragment) ARouter.getInstance().build(ARouterPath.NewsListFgt).navigation();
-        BaseFragment fragmentGirls = (BaseFragment) ARouter.getInstance().build(ARouterPath.GirlsListFgt).navigation();
+//        BaseFragment fragmentGirls = (BaseFragment) ARouter.getInstance().build(ARouterPath.GirlsListFgt).navigation();
         BaseFragment fragmentAbout = (BaseFragment) ARouter.getInstance().build(ARouterPath.AboutFgt).navigation();
         BaseFragment fragmentPending = (BaseFragment) ARouter.getInstance().build(ARouterPath.PendingFgt).navigation();
 //        BaseFragment fragmentPending = (BaseFragment) new To
 
         mFragments.add(fragmentNews);
         mFragments.add(fragmentPending);
-        mFragments.add(fragmentGirls);
+//        mFragments.add(fragmentGirls);
         mFragments.add(fragmentAbout);
 
         mAdapter = new FragmentAdapter(getSupportFragmentManager(), mFragments);

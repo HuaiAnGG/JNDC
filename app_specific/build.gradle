@@ -43,7 +43,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    api project(':module_girls')
     api project(':module_news')
     api project(':module_todo')
 
