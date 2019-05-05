@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="noticeItem"
+            type="google.architecture.coremodel.datamodel.http.entities.TodoData.NoticeResultsBean" />
+
+        <variable
+            name="noticeCallback"
+            type="google.architecture.todo.notice.TodoNoticeClickCallback" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_55dp"
+        android:gravity="center"
+        android:onClick="@{() ->  noticeCallback.onClick(noticeItem)}">
+
+        <ImageView
+            android:id="@+id/todo_notice_item_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/size_8dp"
+            android:src="@drawable/workpending_notice_ic"
+            tools:src="@drawable/workpending_notice_ic" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_8dp"
+            android:layout_marginRight="@dimen/size_8dp"
+            android:layout_toRightOf="@id/todo_notice_item_icon"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:id="@+id/todo_notice_item_edit_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/todo_notice_item_title_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{noticeItem.title}"
+                    android:textColor="#333333"
+                    tools:text="关于2019年春节放假连休" />
+
+                <TextView
+                    android:id="@+id/todo_notice_item_update_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right"
+                    android:text="@{noticeItem.updateTime}"
+                    android:textColor="#999999"
+                    tools:text="09-18" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/size_30dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/todo_notice_item_author_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{noticeItem.author}"
+                    android:textColor="#666666"
+                    tools:text="创建人：杨鹤" />
+
+                <TextView
+                    android:id="@+id/todo_notice_item_read_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right"
+                    android:text="@{noticeItem.readNum}"
+                    android:textColor="#666666"
+                    tools:text="阅读量：165" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

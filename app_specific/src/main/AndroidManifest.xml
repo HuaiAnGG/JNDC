@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="google.architecture.specific">
+
+    <application>
+
+        <activity android:name=".ActivityMain"/>
+
+    </application>
+
+</manifest>

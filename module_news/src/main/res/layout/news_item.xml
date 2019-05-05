@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable name="newsItem"
+                  type="google.architecture.coremodel.datamodel.http.entities.NewsData.ResultsBean"/>
+        <variable name="callback"
+                  type="google.architecture.news.NewsItemClickCallback"/>
+    </data>
+
+    <LinearLayout
+        android:onClick="@{() ->  callback.onClick(newsItem)}"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/size_4dp"
+        android:layout_marginBottom="@dimen/size_4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginTop="@dimen/size_6dp"
+            android:paddingLeft="@dimen/size_6dp"
+            android:textSize="@dimen/text_size_16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="@{newsItem.title}"
+            android:hint="人勤春来早，年后开工忙，收心聚力再出发"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:paddingLeft="@dimen/size_6dp"
+            android:layout_marginTop="@dimen/size_16dp"
+            android:text="@{newsItem.apartment}"
+            android:hint="燃料部/运行分部"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:padding="@dimen/size_6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_gravity="left"
+                android:text="@{newsItem.author}"
+                android:hint="编辑人：岑仕诚"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:gravity="right"
+                android:layout_marginRight="@dimen/size_6dp"
+                android:text="@{newsItem.updateTime}"
+                android:hint="2019-02-19 11：58"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <TextView
+            android:background="@color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_2dp" />
+
+    </LinearLayout>
+
+</layout>

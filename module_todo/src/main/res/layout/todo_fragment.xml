@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ActivityNews">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="todoViewModel"
+            type="google.architecture.todo.TodoViewModel" />
+        <variable
+            name="recyclerAdapter"
+            type="android.support.v7.widget.RecyclerView.Adapter"/>
+        <variable
+            name="noticeRecyclerAdapter"
+            type="android.support.v7.widget.RecyclerView.Adapter"/>
+        <variable
+            name="PendingRecyclerAdapter"
+            type="android.support.v7.widget.RecyclerView.Adapter"/>
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/qmui_config_color_gray_9">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/qmui_config_color_gray_9"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/todo_pic"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/news_pic" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_16dp"
+                android:layout_marginTop="@dimen/size_10dp"
+                android:layout_marginRight="@dimen/size_16dp"
+                app:cardCornerRadius="@dimen/size_8dp">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/todo_console_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:adapter="@{recyclerAdapter}"
+                    android:padding="@dimen/size_10dp" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_16dp"
+                android:layout_marginTop="@dimen/size_10dp"
+                android:layout_marginRight="@dimen/size_16dp"
+                app:cardCornerRadius="@dimen/size_8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_8dp">
+
+                        <TextView
+                            android:id="@+id/todo_concentrated_color"
+                            android:layout_width="@dimen/size_2.5dp"
+                            android:layout_height="@dimen/size_16dp"
+                            android:layout_alignParentLeft="true"
+                            android:background="#2499e8" />
+
+                        <TextView
+                            android:text="集中待办"
+                            android:textColor="#2499e8"
+                            android:layout_marginLeft="@dimen/size_8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/todo_concentrated_more"
+                            android:text="更多>>"
+                            android:layout_marginRight="@dimen/size_8dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </RelativeLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/todo_pending_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_180dp"
+                        android:scrollbars="none"
+                        app:adapter="@{PendingRecyclerAdapter}"
+                        android:padding="@dimen/size_6dp" >
+
+                    </android.support.v7.widget.RecyclerView>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_16dp"
+                android:layout_marginTop="@dimen/size_10dp"
+                android:layout_marginBottom="@dimen/size_10dp"
+                android:layout_marginRight="@dimen/size_16dp"
+                app:cardCornerRadius="@dimen/size_8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_8dp">
+
+                        <TextView
+                            android:id="@+id/todo_announcement_color"
+                            android:layout_width="@dimen/size_2.5dp"
+                            android:layout_height="@dimen/size_16dp"
+                            android:layout_alignParentLeft="true"
+                            android:background="#2499e8" />
+
+                        <TextView
+                            android:text="公告"
+                            android:textColor="#2499e8"
+                            android:layout_marginLeft="@dimen/size_8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/todo_announcement_more"
+                            android:text="更多>>"
+                            android:layout_marginRight="@dimen/size_8dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </RelativeLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/todo_notice_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_180dp"
+                        android:scrollbars="none"
+                        app:adapter="@{noticeRecyclerAdapter}"
+                        android:padding="@dimen/size_6dp" >
+
+                    </android.support.v7.widget.RecyclerView>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>

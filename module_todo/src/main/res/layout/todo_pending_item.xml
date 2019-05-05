@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="pendingItem"
+            type="google.architecture.coremodel.datamodel.http.entities.TodoData.PendingResultsBean" />
+
+        <variable
+            name="pendingCallback"
+            type="google.architecture.todo.pending.TodoPendingClickCallback" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_55dp"
+        android:gravity="center"
+        android:onClick="@{() -> pendingCallback.onClick(pendingItem)}">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/todo_pending_item_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/size_8dp"
+                android:src="@drawable/workpending_pending_information_ic"
+                tools:src="@drawable/workpending_pending_information_ic" />
+
+            <LinearLayout
+                android:id="@+id/todo_pending_item_edit_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/size_8dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/todo_pending_item_title_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#333333"
+                    android:text="@{pendingItem.title}"
+                    tools:text="关于2019年春节放假连休" />
+
+                <TextView
+                    android:id="@+id/todo_pending_item_author_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#666666"
+                    android:text="@{pendingItem.author}"
+                    tools:text="创建人：杨鹤" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/todo_pending_item_update_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/size_8dp"
+            android:textColor="#999999"
+            android:text="@{pendingItem.updateTime}"
+            tools:text="09-18" />
+
+    </RelativeLayout>
+
+</layout>

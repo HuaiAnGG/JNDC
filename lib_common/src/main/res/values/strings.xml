@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">lib_common</string>
+
+    <string name="current_internet_invalid">当前网络未连接</string>
+    <string name="internet_base_url_null">baseUrl不能为空</string>
+
+    <!--loading-->
+    <string name="loading">载入中···</string>
+
+    <!--EasyRecyclerView库的公用布局-->
+    <string name="more_loading">加载中…</string>
+    <string name="no_more">没有更多了</string>
+    <string name="load_error_resume">加载出错，点击重试</string>
+    <string name="more">更多</string>
+    <string name="no_data">暂无数据</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="about_fragment">FragmentAbout</string>
+
+    <string name="register_admin_hint">请输入工号</string>
+    <string name="register_password_hint">请输入密码</string>
+    <string name="register_login_btn">登录</string>
+
+    <string name="title_newest_news">第一资讯</string>
+    <string name="title_todo_work">工作待办</string>
+    <string name="title_inner_email">内部邮件</string>
+    <string name="title_about_me">我的</string>
+</resources>

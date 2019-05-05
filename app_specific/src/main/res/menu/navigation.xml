@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_newest_news"
+        android:orderInCategory="0"
+        android:icon="@drawable/app_first_information_n_ic"
+        android:title="@string/title_newest_news" />
+
+    <item
+        android:id="@+id/navigation_todo_work"
+        android:orderInCategory="1"
+        android:icon="@drawable/app_work_pending_n_ic"
+        android:title="@string/title_todo_work" />
+
+    <item
+        android:id="@+id/navigation_inner_email"
+        android:orderInCategory="2"
+        android:icon="@drawable/app_internal_mail_n_ic"
+        android:title="@string/title_inner_email" />
+
+    <item
+        android:id="@+id/navigation_about_me"
+        android:orderInCategory="3"
+        android:icon="@drawable/app_me_n_ic"
+        android:title="@string/title_about_me" />
+
+
+</menu>

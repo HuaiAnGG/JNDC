@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/JNDC.iml" filepath="$PROJECT_DIR$/JNDC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app_login/app_login.iml" filepath="$PROJECT_DIR$/app_login/app_login.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app_specific/app_specific.iml" filepath="$PROJECT_DIR$/app_specific/app_specific.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib_common/lib_common.iml" filepath="$PROJECT_DIR$/lib_common/lib_common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib_coremodel/lib_coremodel.iml" filepath="$PROJECT_DIR$/lib_coremodel/lib_coremodel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib_opensource/lib_opensource.iml" filepath="$PROJECT_DIR$/lib_opensource/lib_opensource.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_girls/module_girls.iml" filepath="$PROJECT_DIR$/module_girls/module_girls.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_news/module_news.iml" filepath="$PROJECT_DIR$/module_news/module_news.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_todo/module_todo.iml" filepath="$PROJECT_DIR$/module_todo/module_todo.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".LoginActivity">
+    
+    <data>
+        <!--import导入一些需要用到的类-->
+        <!--<import type="java.util.List" />-->
+        <import type="google.architecture.login.LoginUserData" />
+
+        <variable
+            name="loginViewModel"
+            type="google.architecture.coremodel.viewmodel.LoginViewModel" />
+
+        <!--使用List集合，&lt; &gt; 就是 < > 的转义符-->
+        <!--<variable-->
+            <!--name="userLoginList"-->
+            <!--type="List&lt;LoginUserData&gt;" />-->
+        <variable
+            name="loginUserData"
+            type="LoginUserData" />
+
+        <!--<variable-->
+            <!--name="itemClick"-->
+            <!--type="google.architecture.login.LoginActivity.ItemClick" />-->
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:src="@drawable/register_logo_img"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/size_60dp"
+            android:layout_marginBottom="@dimen/size_40dp"
+            android:scaleType="centerCrop"
+            android:layout_width="@dimen/size_260dp"
+            android:layout_height="@dimen/size_160dp" />
+
+        <LinearLayout
+            android:background="@drawable/register_input_box"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/login_icon_username"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="4dp"
+                android:padding="8dp"
+                android:src="@drawable/register_admin_ic" />
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/login_icon_username"
+                android:background="@null"
+                android:hint="@string/register_admin_hint"
+                android:text="@={loginUserData.userName}"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textColor="#aaaaaa" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@drawable/register_input_box"
+            android:layout_marginTop="70px"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="4dp"
+                android:padding="8dp"
+                android:src="@drawable/register_password_ic" />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@id/login_icon_username"
+                android:background="@null"
+                android:hint="@string/register_password_hint"
+                android:text="@={loginUserData.password}"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/login_btn"
+            android:text="@string/register_login_btn"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:layout_marginTop="64px"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:background="@drawable/register_btn_n"
+            android:textSize="30px"
+            android:textColorHint="#ffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</layout>
