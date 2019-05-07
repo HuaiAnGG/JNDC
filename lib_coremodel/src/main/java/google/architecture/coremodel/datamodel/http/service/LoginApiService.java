@@ -11,6 +11,6 @@ import retrofit2.http.POST;
 
 public interface LoginApiService {
 
-    @POST("/lead_portal/api/login/checkLogin.lead/")
-    Observable<ResponseMessage> getLoginData(@Body RequestMessage requestMessage);
+    @POST("/lead_portal/api/login/checkLogin.lead")
+    Observable<LoginResopnseMessage> getLoginData(@Body LoginRequestMessage requestMessage);
 }

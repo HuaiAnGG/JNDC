@@ -1,5 +1,7 @@
 package google.architecture.coremodel.datamodel.http.repository;
 
+import android.util.Log;
+
 import google.architecture.coremodel.datamodel.http.ApiClient;
 import google.architecture.coremodel.util.JsonUtil;
 import google.architecture.coremodel.util.SwitchSchedulers;
@@ -24,7 +26,9 @@ public class DynamicDataRepository {
                 .map(new Function<ResponseBody, T>() {
                     @Override
                     public T apply(ResponseBody responseBody) throws Exception {
-                        return JsonUtil.Str2JsonBean(responseBody.string(), clazz);
+//                        return JsonUtil.Str2JsonBean(responseBody, clazz);
+                        Log.e("==========", responseBody.toString());
+                        return null;
                     }
                 });
     }

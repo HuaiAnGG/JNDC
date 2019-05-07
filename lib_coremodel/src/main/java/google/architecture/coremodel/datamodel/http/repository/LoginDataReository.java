@@ -1,5 +1,6 @@
 package google.architecture.coremodel.datamodel.http.repository;
 
+import com.google.gson.Gson;
 import com.just.core.message.RequestMessage;
 import com.just.core.message.ResponseMessage;
 
@@ -16,17 +17,19 @@ import io.reactivex.functions.Function;
  */
 public class LoginDataReository {
 
-    public static <T>Observable getLoginData(RequestMessage requestMessage, final Class<T> clazz) {
+    public static <T>Observable getLoginData(LoginRequestMessage requestMessage, final Class<T> clazz) {
+
+        Gson gson = new Gson();
 
         return
                 ApiClient
                         .getLoginDataService()
                         .getLoginData(requestMessage)
                         .compose(SwitchSchedulers.applySchedulers())
-                        .map(new Function<ResponseMessage, T>() {
+                        .map(new Function<LoginResopnseMessage, T>() {
                             @Override
-                            public T apply(ResponseMessage responseMessage) throws Exception {
-                                return JsonUtil.Str2JsonBean(responseMessage.toString(), clazz);
+                            public T apply(LoginResopnseMessage responseMessage) throws Exception {
+                                return JsonUtil.Str2JsonBean(gson.toJson(responseMessage, LoginResopnseMessage.class), clazz);
                             }
                         });
     }

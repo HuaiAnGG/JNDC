@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -62,15 +63,15 @@ public class LoginActivity extends BaseActivity {
              * 启动校验
              */
 //            doTask();
-//            LoginRequestMessage loginRequestMessage = new LoginRequestMessage();
-//            loginRequestMessage.getBody().setPassword(MD5.md5("1"));
-//            loginRequestMessage.getBody().setUserName("admin");
-//
-//            loginRequestMessage.getHeader().setAppcode("A024");
-//            loginRequestMessage.getHeader().setDatatype(2);
-//            loginRequestMessage.getHeader().setFunc("loginApp");
-//            loginRequestMessage.getHeader().setSeqid("");
-//            loginRequestMessage.getHeader().setTimestamp("20151225154016");
+            LoginRequestMessage loginRequestMessage = new LoginRequestMessage();
+            loginRequestMessage.getBody().setPassword(MD5.md5("1"));
+            loginRequestMessage.getBody().setUserName("admin");
+
+            loginRequestMessage.getHeader().setAppcode("A024");
+            loginRequestMessage.getHeader().setDatatype(2);
+            loginRequestMessage.getHeader().setFunc("loginApp");
+            loginRequestMessage.getHeader().setSeqid("");
+            loginRequestMessage.getHeader().setTimestamp("20151225154016");
 
 //            Log.e("LoginRequestMessage", loginRequestMessage.toString());
 
@@ -121,30 +122,54 @@ public class LoginActivity extends BaseActivity {
                     "password", "c4ca4238a0b923820dcc509a6f75849b"
             );
 
-            LoginDataReository.getLoginData(requestMessage, ResponseMessage.class)
+            LoginDataReository.getLoginData(loginRequestMessage, LoginResopnseMessage.class)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer() {
+                    .subscribe(new Observer<LoginResopnseMessage>() {
                         @Override
                         public void onSubscribe(Disposable d) {
-                            Log.e("==========", d.toString());
+
                         }
 
                         @Override
-                        public void onNext(Object value) {
-                            Log.e("==========", value.toString());
+                        public void onNext(LoginResopnseMessage msg) {
+
+                            if (msg == null) {
+                                return;
+                            }
+
+                            String status = msg.getHeader().getStatus();
+
+                            if ("200".equals(status)) {
+                                ARouter.getInstance()
+                                        .build(ARouterPath.MainAty)
+                                        /**可以针对性跳转跳转动画*/
+                                        .withTransition(R.anim.activity_up_in, R.anim.activity_up_out)
+                                        .navigation(LoginActivity.this);
+                                Toast.makeText(getApplicationContext(), "登录成功!", Toast.LENGTH_LONG).show();
+                                return;
+                            }
+
+                            String info = msg.getHeader().getInfo();
+                            if ("HTTP请求响应数据失败".equals(info)) {
+                                info = "网络连接出错";
+                            }
+                            Toast.makeText(getApplicationContext(), info, Toast.LENGTH_LONG).show();
                         }
 
                         @Override
                         public void onError(Throwable e) {
-                            Log.e("==========", "",e);
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                         }
 
                         @Override
                         public void onComplete() {
-                            Log.e("==========", "Done!!!!!!!!");
+
                         }
                     });
+
+//            doTask();
         }
     };
 
@@ -193,7 +218,7 @@ public class LoginActivity extends BaseActivity {
 //        CoreConfig.domainUploadUrl 	= SpfUtils.getSpf(getApplicationContext(), Constants.SPF_DOMAIN_UPLOAD, BuildConfig.DOMAIN_URL_PIC);
 
         CoreConfig.domainUrl = "http://oa.leadisoft.com:18081/lead_portal/api/login/checkLogin.lead/";
-		CoreConfig.domainUploadUrl = "http://oa.leadisoft.com:18081/lead_portal/api/login/checkLogin.lead/";
+        CoreConfig.domainUploadUrl = "http://oa.leadisoft.com:18081/lead_portal/api/login/checkLogin.lead/";
 
         Log.e("--App", "-> " + CoreConfig.domainUrl);
         Log.e("--App", "-> " + CoreConfig.domainUploadUrl);
@@ -218,7 +243,7 @@ public class LoginActivity extends BaseActivity {
 
         httpTask.getRequestMessage().body.setItemValue("userName", "admin");
         httpTask.getRequestMessage().body.setItemValue("password", MD5.md5("1"));
-
+        httpTask.getRequestMessage().header.setTimestamp("20190501172202");
         Log.e("--HttpUtil", "[HTTP RQ]" + httpTask.getRequestMessage().toJSON());
 
         HttpEngine.getInstance().emit(httpTask);
