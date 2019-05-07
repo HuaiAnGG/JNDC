@@ -39,8 +39,6 @@ dependencies {
 
     api project(':lib_coremodel')
     annotationProcessor deps.arouter.compiler
-    api files('libs\\core_auth_iscs_v1.0-release.aar')
-    api files('libs\\core_message_3_v1.0-release.aar')
 }
 
     uploadArchives {

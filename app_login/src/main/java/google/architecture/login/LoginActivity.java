@@ -7,20 +7,28 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.just.auth.iscs.impl.ISCSAuthImpl;
 import com.just.core.common.AuthModel;
+import com.just.core.common.CoreConfig;
 import com.just.core.http.HttpEngine;
+import com.just.core.http.HttpHeader;
 import com.just.core.http.HttpTask;
 import com.just.core.listener.MessageCallbackListener;
-import com.just.core.message.RequestBody;
-import com.just.core.message.RequestHeader;
+import com.just.core.message.RequestMessage;
 import com.just.core.message.ResponseMessage;
 import com.just.core.util.MD5;
 
 import google.architecture.common.base.ARouterPath;
 import google.architecture.common.base.BaseActivity;
-import google.architecture.coremodel.viewmodel.GirlsViewModel;
+import google.architecture.coremodel.datamodel.http.entities.LoginRequestMessage;
+import google.architecture.coremodel.datamodel.http.entities.LoginResopnseMessage;
+import google.architecture.coremodel.datamodel.http.repository.LoginDataReository;
 import google.architecture.coremodel.viewmodel.LoginViewModel;
 import google.architecture.login.databinding.ActivityLoginBinding;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 @Route(path = ARouterPath.LoginAty)
 public class LoginActivity extends BaseActivity {
@@ -54,12 +62,95 @@ public class LoginActivity extends BaseActivity {
              * 启动校验
              */
 //            doTask();
+//            LoginRequestMessage loginRequestMessage = new LoginRequestMessage();
+//            loginRequestMessage.getBody().setPassword(MD5.md5("1"));
+//            loginRequestMessage.getBody().setUserName("admin");
+//
+//            loginRequestMessage.getHeader().setAppcode("A024");
+//            loginRequestMessage.getHeader().setDatatype(2);
+//            loginRequestMessage.getHeader().setFunc("loginApp");
+//            loginRequestMessage.getHeader().setSeqid("");
+//            loginRequestMessage.getHeader().setTimestamp("20151225154016");
+
+//            Log.e("LoginRequestMessage", loginRequestMessage.toString());
+
+//            Retrofit retrofit = new Retrofit.Builder()
+//                    .baseUrl("https://oa.leadisoft.com:18081/lead_portal/api/login/")
+//                    .addConverterFactory(GsonConverterFactory.create())
+//                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//                    .build();
+//
+//            Log.e("===================", retrofit.baseUrl().toString());
+//
+//            LoginApi service = retrofit.create(LoginApi.class);
+//
+//            Observable<LoginResopnseMessage> observable = service.getLogin(loginRequestMessage);
+//            observable.subscribeOn(Schedulers.io())
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe(new Observer<LoginResopnseMessage>() {
+//                        @Override
+//                        public void onSubscribe(Disposable d) {
+//                            Log.e("=====================", "Disposable" );
+//                        }
+//
+//                        @Override
+//                        public void onNext(LoginResopnseMessage value) {
+//                            Log.e("====================", value.toString());
+//                        }
+//
+//                        @Override
+//                        public void onError(Throwable e) {
+//                            Log.e("===================","error info:", e);
+//                        }
+//
+//                        @Override
+//                        public void onComplete() {
+//                            Log.e("====================", "onComplete: " );
+//                        }
+//                    });
+
+            final RequestMessage requestMessage = new RequestMessage();
+            requestMessage.header.setDataType(2);
+            requestMessage.header.setAppcode("A024");
+            requestMessage.header.setFunc("loginApp");
+            requestMessage.header.setTimestamp("20151225154016");
+            requestMessage.header.setSeqId("");
+
+            requestMessage.body.setItemParaListWithKeys(
+                    "userName", "admin",
+                    "password", "c4ca4238a0b923820dcc509a6f75849b"
+            );
+
+            LoginDataReository.getLoginData(requestMessage, ResponseMessage.class)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
+                            Log.e("==========", d.toString());
+                        }
+
+                        @Override
+                        public void onNext(Object value) {
+                            Log.e("==========", value.toString());
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            Log.e("==========", "",e);
+                        }
+
+                        @Override
+                        public void onComplete() {
+                            Log.e("==========", "Done!!!!!!!!");
+                        }
+                    });
         }
     };
 
     private void initHttpTask() {
 
-        httpTask = new HttpTask("A024", "loginApp",
+        httpTask = new HttpTask("A024", "loginApp", HttpTask.Type.COMMON,
                 new MessageCallbackListener() {
                     @Override
                     public void onWaiting(HttpTask httpTask) {
@@ -88,32 +179,45 @@ public class LoginActivity extends BaseActivity {
                     }
                 });
     }
-    
+
     private void doTask() {
         if (httpTask == null) {
             initHttpTask();
         }
 
-        RequestBody body = new RequestBody();
-        RequestHeader header = new RequestHeader();
 
-        body.setItemValue("userName", "admin");
-        body.setItemValue("password", MD5.md5("1"));
+        CoreConfig.appCode = "A023";
+//        CoreConfig.commandCodeAuth = Cmd.cmdMap;
 
-        header.setDataType(2);
+//        CoreConfig.domainUrl 		= SpfUtils.getSpf(getApplicationContext(), Constants.SPF_DOMAIN_URL, BuildConfig.DOMAIN_URL);
+//        CoreConfig.domainUploadUrl 	= SpfUtils.getSpf(getApplicationContext(), Constants.SPF_DOMAIN_UPLOAD, BuildConfig.DOMAIN_URL_PIC);
 
-        httpTask.getRequestMessage().body = body;
-        httpTask.getRequestMessage().header = header;
+        CoreConfig.domainUrl = "http://oa.leadisoft.com:18081/lead_portal/api/login/checkLogin.lead/";
+		CoreConfig.domainUploadUrl = "http://oa.leadisoft.com:18081/lead_portal/api/login/checkLogin.lead/";
+
+        Log.e("--App", "-> " + CoreConfig.domainUrl);
+        Log.e("--App", "-> " + CoreConfig.domainUploadUrl);
+
+        CoreConfig.setAuthGenerator(new ISCSAuthImpl());
+
+        HttpHeader httpHeader = new HttpHeader();
+        httpHeader.setUrl(CoreConfig.domainUrl);
+        httpTask.getRequestMessage().header.setHttpHeader(httpHeader);
 
         // 验证模式
-//        httpTask.getRequestMessage().header.getHttpHeader().setAuthModel(AuthModel.AUTH_LOGIN);
+//        httpTask.getRequestMessage().header.setAppcode("A024");
+//        httpTask.getRequestMessage().header.setFunc("loginApp");
+//        httpTask.getRequestMessage().header.setTimestamp("20151225154016");
+//        httpTask.getRequestMessage().header.setDataType(2);
+        httpTask.getRequestMessage().header.getHttpHeader().setAuthModel(AuthModel.AUTH_DEFAULT);
 
-//            httpTask.getRequestMessage().body.setItemParaListWithKeys(
-//                    "userName", binding.username.getText().toString(),
-//                    "password", binding.password.getText().toString()
-//            );
-//        httpTask.getRequestMessage().body.setItemValue("userName", "admin");
-//        httpTask.getRequestMessage().body.setItemValue("password", MD5.md5("1"));
+//        httpTask.getRequestMessage().body.setItemParaListWithKeys(
+//                "userName", binding.username.getText().toString(),
+//                "password", binding.password.getText().toString()
+//        );
+
+        httpTask.getRequestMessage().body.setItemValue("userName", "admin");
+        httpTask.getRequestMessage().body.setItemValue("password", MD5.md5("1"));
 
         Log.e("--HttpUtil", "[HTTP RQ]" + httpTask.getRequestMessage().toJSON());
 

@@ -2,6 +2,9 @@ package google.architecture.login;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.security.ProviderInstaller;
 
 import google.architecture.common.base.BaseApplication;
 import google.architecture.common.util.Utils;
@@ -23,5 +26,13 @@ public class App extends BaseApplication{
             ARouter.openLog();
         }
         ARouter.init(this);
+
+        try {
+            ProviderInstaller.installIfNeeded(this);
+        } catch (GooglePlayServicesRepairableException e) {
+            e.printStackTrace();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
     }
 }

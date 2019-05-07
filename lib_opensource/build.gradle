@@ -32,6 +32,7 @@ android {
 dependencies {
 
     api fileTree(dir: 'libs', include: ['*.jar'])
+    api fileTree(dir: 'libs', include: ['*.arr'])
     testApi 'junit:junit:4.12'
     androidTestApi 'com.android.support.test:runner:1.0.1'
     androidTestApi 'com.android.support.test.espresso:espresso-core:3.0.1'
@@ -76,6 +77,12 @@ dependencies {
 
     // qmui
     api deps.qmui
+
+    api files('libs\\core_auth_iscs_v1.0-release.aar',
+            'libs\\core_message_3_v1.0-release.aar',
+            'libs\\core_basic_v1.0-release.aar'
+    )
+    api 'com.google.android.gms:play-services-auth:16.0.0'
 }
 
 uploadArchives {
@@ -95,6 +102,9 @@ uploadArchives {
                 packaging getType()
                 description getDescription()
             }
+        }
+        flatDir {
+            dirs 'libs'
         }
     }
 }

@@ -8,6 +8,10 @@ public class ApiConstants {
 
     public static final String GankHost = "http://gank.io/";
 
-    public static final String LEADI_SOFT = "http://oa.leadisoft.com:18081/lead_portal/api/";
+
+    // http://oa.leadisoft.com:18081/lead_portal/api/login/checkLogin.lead
+    public static final String LOGIN_URL = "http://oa.leadisoft.com:18081/";
+
+
 
 }

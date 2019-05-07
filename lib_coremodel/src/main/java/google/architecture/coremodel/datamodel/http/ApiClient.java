@@ -35,7 +35,7 @@ public class ApiClient{
     public static DynamicApiService getDynamicDataService(){
 
         DynamicApiService dynamicApiService
-                = ApiClient.initService("", DynamicApiService.class);
+                = ApiClient.initService(DynamicApiService.class);
 
         return dynamicApiService;
     }
@@ -46,7 +46,7 @@ public class ApiClient{
      */
     public static LoginApiService getLoginDataService() {
         LoginApiService loginApiService
-                = ApiClient.initService(ApiConstants.LEADI_SOFT, LoginApiService.class);
+                = ApiClient.initService(ApiConstants.LOGIN_URL, LoginApiService.class);
         return loginApiService;
     }
 
@@ -58,6 +58,11 @@ public class ApiClient{
      * @return
      */
     private static <T> T initService(String baseUrl, Class<T> clazz) {
+        return getRetrofitInstance(baseUrl).create(clazz);
+    }
+
+
+    private static <T> T initService(Class<T> clazz) {
         return getRetrofitInstance().create(clazz);
     }
 

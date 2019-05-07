@@ -1,9 +1,14 @@
 package google.architecture.coremodel.datamodel.http.service;
 
+import com.just.core.message.RequestMessage;
+import com.just.core.message.ResponseMessage;
+
 import google.architecture.coremodel.datamodel.http.entities.GirlsData;
 import google.architecture.coremodel.datamodel.http.entities.NewsData;
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**

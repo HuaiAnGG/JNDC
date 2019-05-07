@@ -1,41 +1,32 @@
 package google.architecture.coremodel.datamodel.http.repository;
 
+import com.just.core.message.RequestMessage;
+import com.just.core.message.ResponseMessage;
+
 import google.architecture.coremodel.datamodel.http.ApiClient;
-import google.architecture.coremodel.datamodel.http.entities.GirlsData;
-import google.architecture.coremodel.datamodel.http.entities.LoginData;
+import google.architecture.coremodel.datamodel.http.entities.LoginRequestMessage;
+import google.architecture.coremodel.datamodel.http.entities.LoginResopnseMessage;
 import google.architecture.coremodel.util.JsonUtil;
 import google.architecture.coremodel.util.SwitchSchedulers;
 import io.reactivex.Observable;
 import io.reactivex.functions.Function;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 
 /**
  * 登陆信息接口
  */
 public class LoginDataReository {
 
-//    public static Observable<LoginData> getLoginData(RequestBody body){
-//
-//        Observable<LoginData> observableForPostLoginDataFromNetWork
-//                = ApiClient.getLoginDataService().getLoginData(body);
-//
-//        //可以操作Observable来筛选网络或者是本地数据
-//
-//        return observableForPostLoginDataFromNetWork;
-//    }
-
-    public static <T>Observable getLoginData(String pullUrl, final Class<T> clazz) {
+    public static <T>Observable getLoginData(RequestMessage requestMessage, final Class<T> clazz) {
 
         return
                 ApiClient
-                        .getDynamicDataService()
-                        .getDynamicData(pullUrl)
+                        .getLoginDataService()
+                        .getLoginData(requestMessage)
                         .compose(SwitchSchedulers.applySchedulers())
-                        .map(new Function<ResponseBody, T>() {
+                        .map(new Function<ResponseMessage, T>() {
                             @Override
-                            public T apply(ResponseBody responseBody) throws Exception {
-                                return JsonUtil.Str2JsonBean(responseBody.string(), clazz);
+                            public T apply(ResponseMessage responseMessage) throws Exception {
+                                return JsonUtil.Str2JsonBean(responseMessage.toString(), clazz);
                             }
                         });
     }
