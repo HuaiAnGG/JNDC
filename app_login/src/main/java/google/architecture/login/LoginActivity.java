@@ -2,12 +2,15 @@ package google.architecture.login;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.just.core.common.AuthModel;
+import com.just.core.common.CoreConfig;
 import com.just.core.http.HttpEngine;
 import com.just.core.http.HttpTask;
 import com.just.core.listener.MessageCallbackListener;
@@ -16,11 +19,17 @@ import com.just.core.message.RequestHeader;
 import com.just.core.message.ResponseMessage;
 import com.just.core.util.MD5;
 
+import org.json.ext.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import google.architecture.common.base.ARouterPath;
 import google.architecture.common.base.BaseActivity;
 import google.architecture.coremodel.viewmodel.GirlsViewModel;
 import google.architecture.coremodel.viewmodel.LoginViewModel;
 import google.architecture.login.databinding.ActivityLoginBinding;
+import google.architecture.todo.utils.Constants;
 
 @Route(path = ARouterPath.LoginAty)
 public class LoginActivity extends BaseActivity {
@@ -53,13 +62,13 @@ public class LoginActivity extends BaseActivity {
             /**
              * 启动校验
              */
-//            doTask();
+            doTask();
         }
     };
 
     private void initHttpTask() {
 
-        httpTask = new HttpTask("A024", "loginApp",
+        httpTask = new HttpTask("A023", "loginApp",
                 new MessageCallbackListener() {
                     @Override
                     public void onWaiting(HttpTask httpTask) {
@@ -68,13 +77,8 @@ public class LoginActivity extends BaseActivity {
 
                     @Override
                     public void onMessageResponse(HttpTask httpTask, ResponseMessage responseMessage) {
-                        Log.i("onMessageResponse: ", responseMessage.toString());
+                        Log.e("onMessageResponse: ", responseMessage.getJsonText());
 
-                        ARouter.getInstance()
-                                .build(ARouterPath.MainAty)
-                                /**可以针对性跳转跳转动画*/
-                                .withTransition(R.anim.activity_up_in, R.anim.activity_up_out)
-                                .navigation(LoginActivity.this);
                     }
 
                     @Override
@@ -94,28 +98,24 @@ public class LoginActivity extends BaseActivity {
             initHttpTask();
         }
 
-        RequestBody body = new RequestBody();
-        RequestHeader header = new RequestHeader();
 
-        body.setItemValue("userName", "admin");
-        body.setItemValue("password", MD5.md5("1"));
+		CoreConfig.domainUrl = "http://oa.leadisoft.com:18081/lead_portal/api/login/checkLogin.lead";
 
-        header.setDataType(2);
+        Log.e("--App", "-> " + CoreConfig.domainUrl);
+//        Log.e("--App", "-> " + CoreConfig.domainUploadUrl);
 
-        httpTask.getRequestMessage().body = body;
-        httpTask.getRequestMessage().header = header;
+        Map<String, String> hashMap = new HashMap();
+        hashMap.put("loginApp", AuthModel.AUTH_DEFAULT);
+        CoreConfig.commandCodeAuth = hashMap;
 
-        // 验证模式
-//        httpTask.getRequestMessage().header.getHttpHeader().setAuthModel(AuthModel.AUTH_LOGIN);
+        httpTask.getRequestMessage().header.setDataType(2);
+        httpTask.getRequestMessage().body.setItemParaListWithKeys(
+                "userName", "admin",
+                "password", MD5.md5("1")
+        );
+        httpTask.setUrl(CoreConfig.domainUrl);
 
-//            httpTask.getRequestMessage().body.setItemParaListWithKeys(
-//                    "userName", binding.username.getText().toString(),
-//                    "password", binding.password.getText().toString()
-//            );
-//        httpTask.getRequestMessage().body.setItemValue("userName", "admin");
-//        httpTask.getRequestMessage().body.setItemValue("password", MD5.md5("1"));
-
-        Log.e("--HttpUtil", "[HTTP RQ]" + httpTask.getRequestMessage().toJSON());
+        Log.d("--HttpUtil", "[HTTP RQ]" + httpTask.getRequestMessage().toJSON());
 
         HttpEngine.getInstance().emit(httpTask);
     }
