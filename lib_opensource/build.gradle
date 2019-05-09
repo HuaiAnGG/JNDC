@@ -89,6 +89,7 @@ dependencies {
 //            'libs\\xutils_v3.3.12-release.aar'
     )
     api 'com.google.android.gms:play-services-auth:16.0.0'
+    api files('libs\\ivms-release.aar')
 }
 
 uploadArchives {

@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -67,18 +68,24 @@ public class ActivityMain extends BaseActivity {
         mPager.setOffscreenPageLimit(3);
 
         BaseFragment fragmentNews = (BaseFragment) ARouter.getInstance().build(ARouterPath.NewsListFgt).navigation();
-//        BaseFragment fragmentGirls = (BaseFragment) ARouter.getInstance().build(ARouterPath.GirlsListFgt).navigation();
         BaseFragment fragmentAbout = (BaseFragment) ARouter.getInstance().build(ARouterPath.AboutFgt).navigation();
         BaseFragment fragmentPending = (BaseFragment) ARouter.getInstance().build(ARouterPath.PendingFgt).navigation();
 //        BaseFragment fragmentPending = (BaseFragment) new To
 
         mFragments.add(fragmentNews);
         mFragments.add(fragmentPending);
-//        mFragments.add(fragmentGirls);
         mFragments.add(fragmentAbout);
 
         mAdapter = new FragmentAdapter(getSupportFragmentManager(), mFragments);
         mainBinding.setViewPaAdapter(mAdapter);
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

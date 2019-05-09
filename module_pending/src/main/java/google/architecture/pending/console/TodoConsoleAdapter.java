@@ -18,7 +18,7 @@ import google.architecture.pending.utils.Constants;
  * @author: HuaiAngg
  * @create: 2019-05-04 20:36
  */
-public class TodoConsoleAdapter extends RecyclerView.Adapter<TodoConsoleAdapter.TodoConcoleViewHolder> {
+public class TodoConsoleAdapter extends RecyclerView.Adapter<TodoConsoleAdapter.TodoConsoleViewHolder> {
 
     List<TodoData.ConsoleResultsBean> consoleList;
     TodoConsoleClickCallback consoleItemClickCallback;
@@ -64,16 +64,16 @@ public class TodoConsoleAdapter extends RecyclerView.Adapter<TodoConsoleAdapter.
     }
 
     @Override
-    public TodoConcoleViewHolder onCreateViewHolder(ViewGroup parent, int positon) {
+    public TodoConsoleViewHolder onCreateViewHolder(ViewGroup parent, int positon) {
         TodoConsoleItemBinding binding = DataBindingUtil
                 .inflate(LayoutInflater.from(parent.getContext()), R.layout.todo_console_item,
                         parent, false);
         binding.setConsoleCallback(consoleItemClickCallback);
-        return new TodoConcoleViewHolder(binding);
+        return new TodoConsoleViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(TodoConcoleViewHolder holder, int position) {
+    public void onBindViewHolder(TodoConsoleViewHolder holder, int position) {
         holder.binding.setConsoleItem(consoleList.get(position));
         holder.binding.todoConsoleListIcon.setImageResource(Constants.TODO_CONSOLE_LIST_ICON[position]);
         holder.binding.executePendingBindings();
@@ -84,10 +84,10 @@ public class TodoConsoleAdapter extends RecyclerView.Adapter<TodoConsoleAdapter.
         return consoleList == null ? null : consoleList.size();
     }
 
-    static class TodoConcoleViewHolder extends RecyclerView.ViewHolder {
+    static class TodoConsoleViewHolder extends RecyclerView.ViewHolder {
         TodoConsoleItemBinding binding;
 
-        public TodoConcoleViewHolder(TodoConsoleItemBinding binding) {
+        public TodoConsoleViewHolder(TodoConsoleItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
