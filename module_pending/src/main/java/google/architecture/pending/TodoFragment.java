@@ -1,4 +1,4 @@
-package google.architecture.todo;
+package google.architecture.pending;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -20,14 +20,14 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import google.architecture.common.base.ARouterPath;
 import google.architecture.common.base.BaseFragment;
 import google.architecture.coremodel.datamodel.http.entities.TodoData;
-import google.architecture.todo.console.TodoConsoleAdapter;
-import google.architecture.todo.console.TodoConsoleClickCallback;
-import google.architecture.todo.databinding.TodoFragmentBinding;
-import google.architecture.todo.notice.TodoNoticeAdapter;
-import google.architecture.todo.notice.TodoNoticeClickCallback;
-import google.architecture.todo.pending.TodoPendingAdapter;
-import google.architecture.todo.pending.TodoPendingClickCallback;
-import google.architecture.todo.utils.NoScrollLinearView;
+import google.architecture.pending.console.TodoConsoleAdapter;
+import google.architecture.pending.console.TodoConsoleClickCallback;
+import google.architecture.pending.databinding.TodoFragmentBinding;
+import google.architecture.pending.notice.TodoNoticeAdapter;
+import google.architecture.pending.notice.TodoNoticeClickCallback;
+import google.architecture.pending.pending.TodoPendingAdapter;
+import google.architecture.pending.pending.TodoPendingClickCallback;
+import google.architecture.pending.utils.NoScrollLinearView;
 
 @Route(path = ARouterPath.PendingFgt)
 public class TodoFragment extends BaseFragment {

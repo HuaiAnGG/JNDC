@@ -1,4 +1,4 @@
-package google.architecture.todo.notice;
+package google.architecture.pending.notice;
 
 import google.architecture.coremodel.datamodel.http.entities.TodoData;
 

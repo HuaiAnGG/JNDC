@@ -1,8 +1,6 @@
-package google.architecture.todo.utils;
+package google.architecture.pending.utils;
 
-import java.util.List;
-
-import google.architecture.todo.R;
+import google.architecture.pending.R;
 
 /**
  * @description: Constants

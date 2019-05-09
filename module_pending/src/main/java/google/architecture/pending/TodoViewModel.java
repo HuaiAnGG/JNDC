@@ -1,4 +1,4 @@
-package google.architecture.todo;
+package google.architecture.pending;
 
 import android.app.Application;
 import android.arch.core.util.Function;
@@ -19,8 +19,8 @@ import google.architecture.coremodel.datamodel.http.entities.TodoData;
 import google.architecture.coremodel.util.NetUtils;
 import io.reactivex.disposables.CompositeDisposable;
 
-import static google.architecture.todo.utils.Constants.TODO_CONSOLE_LIST_ICON;
-import static google.architecture.todo.utils.Constants.TODO_CONSOLE_LIST_NAME;
+import static google.architecture.pending.utils.Constants.TODO_CONSOLE_LIST_ICON;
+import static google.architecture.pending.utils.Constants.TODO_CONSOLE_LIST_NAME;
 
 public class TodoViewModel extends AndroidViewModel {
     // TODO: Implement the ViewModel

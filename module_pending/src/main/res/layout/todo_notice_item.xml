@@ -12,7 +12,7 @@
 
         <variable
             name="noticeCallback"
-            type="google.architecture.todo.notice.TodoNoticeClickCallback" />
+            type="google.architecture.pending.notice.TodoNoticeClickCallback" />
     </data>
 
     <RelativeLayout

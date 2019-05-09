@@ -1,4 +1,4 @@
-package google.architecture.todo;
+package google.architecture.pending;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("google.architecture.todo.test", appContext.getPackageName());
+        assertEquals("google.architecture.pending.test", appContext.getPackageName());
     }
 }

@@ -1,4 +1,4 @@
-package google.architecture.todo;
+package google.architecture.pending;
 
 import org.junit.Test;
 

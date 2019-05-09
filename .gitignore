@@ -12,3 +12,4 @@
 /build
 gradle.properties
 help.gradle
+.idea/caches/build_file_checksums.ser

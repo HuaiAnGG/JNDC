@@ -1,4 +1,4 @@
-package google.architecture.todo.pending;
+package google.architecture.pending.pending;
 
 import google.architecture.coremodel.datamodel.http.entities.TodoData;
 

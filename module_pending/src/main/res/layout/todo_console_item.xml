@@ -7,7 +7,7 @@
         <variable name="consoleItem"
             type="google.architecture.coremodel.datamodel.http.entities.TodoData.ConsoleResultsBean"/>
         <variable name="consoleCallback"
-            type="google.architecture.todo.console.TodoConsoleClickCallback"/>
+            type="google.architecture.pending.console.TodoConsoleClickCallback"/>
     </data>
 
     <LinearLayout

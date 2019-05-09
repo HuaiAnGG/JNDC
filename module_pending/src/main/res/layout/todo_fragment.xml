@@ -10,7 +10,7 @@
 
         <variable
             name="todoViewModel"
-            type="google.architecture.todo.TodoViewModel" />
+            type="google.architecture.pending.TodoViewModel" />
         <variable
             name="recyclerAdapter"
             type="android.support.v7.widget.RecyclerView.Adapter"/>

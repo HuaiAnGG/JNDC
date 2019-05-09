@@ -1,4 +1,4 @@
-package google.architecture.todo.console;
+package google.architecture.pending.console;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.util.DiffUtil;
@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import google.architecture.coremodel.datamodel.http.entities.TodoData;
-import google.architecture.todo.R;
-import google.architecture.todo.databinding.TodoConsoleItemBinding;
-import google.architecture.todo.utils.Constants;
+import google.architecture.pending.R;
+import google.architecture.pending.databinding.TodoConsoleItemBinding;
+import google.architecture.pending.utils.Constants;
 
 /**
  * @description:
