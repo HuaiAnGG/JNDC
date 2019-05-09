@@ -44,7 +44,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     api project(':module_news')
-    api project(':module_todo')
+    api project(':module_pending')
 
     annotationProcessor deps.arouter.compiler
 }

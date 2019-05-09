@@ -9,7 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/lib_opensource/lib_opensource.iml" filepath="$PROJECT_DIR$/lib_opensource/lib_opensource.iml" />
       <module fileurl="file://$PROJECT_DIR$/module_home/module_home.iml" filepath="$PROJECT_DIR$/module_home/module_home.iml" />
       <module fileurl="file://$PROJECT_DIR$/module_news/module_news.iml" filepath="$PROJECT_DIR$/module_news/module_news.iml" />
-      <module fileurl="file://$PROJECT_DIR$/module_todo/module_todo.iml" filepath="$PROJECT_DIR$/module_todo/module_todo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_pending/module_pending.iml" filepath="$PROJECT_DIR$/module_pending/module_pending.iml" />
     </modules>
   </component>
 </project>

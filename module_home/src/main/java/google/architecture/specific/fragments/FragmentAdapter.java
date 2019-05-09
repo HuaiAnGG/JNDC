@@ -1,4 +1,4 @@
-package google.architecture.specific;
+package google.architecture.specific.fragments;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

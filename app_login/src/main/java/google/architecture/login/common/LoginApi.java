@@ -1,4 +1,4 @@
-package google.architecture.login;
+package google.architecture.login.common;
 
 import google.architecture.coremodel.datamodel.http.entities.LoginRequestMessage;
 import google.architecture.coremodel.datamodel.http.entities.LoginResopnseMessage;

@@ -2,12 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".LoginActivity">
+    tools:context=".activities.LoginActivity">
     
     <data>
         <!--import导入一些需要用到的类-->
         <!--<import type="java.util.List" />-->
-        <import type="google.architecture.login.LoginUserData" />
+        <import type="google.architecture.login.bean.LoginUserData" />
 
         <variable
             name="loginViewModel"
@@ -19,11 +19,11 @@
             <!--type="List&lt;LoginUserData&gt;" />-->
         <variable
             name="loginUserData"
-            type="LoginUserData" />
+            type="google.architecture.login.bean.LoginUserData" />
 
         <!--<variable-->
             <!--name="itemClick"-->
-            <!--type="google.architecture.login.LoginActivity.ItemClick" />-->
+            <!--type="google.architecture.login.activities.LoginActivity.ItemClick" />-->
 
     </data>
 
@@ -39,8 +39,8 @@
             android:layout_marginTop="@dimen/size_60dp"
             android:layout_marginBottom="@dimen/size_40dp"
             android:scaleType="centerCrop"
-            android:layout_width="@dimen/size_260dp"
-            android:layout_height="@dimen/size_160dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:background="@drawable/register_input_box"
@@ -71,9 +71,9 @@
                 android:background="@null"
                 android:hint="@string/register_admin_hint"
                 android:text="@={loginUserData.userName}"
-                android:inputType="number"
                 android:singleLine="true"
-                android:textColor="#aaaaaa" />
+                android:textColor="#aaaaaa"
+                android:inputType="text"/>
         </LinearLayout>
 
         <LinearLayout
@@ -105,9 +105,9 @@
                 android:background="@null"
                 android:hint="@string/register_password_hint"
                 android:text="@={loginUserData.password}"
-                android:inputType="number"
+                android:inputType="textPassword"
                 android:singleLine="true"
-                android:textSize="22sp" />
+                android:textColor="#aaaaaa" />
         </LinearLayout>
 
         <TextView

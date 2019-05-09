@@ -1,4 +1,4 @@
-package google.architecture.specific;
+package google.architecture.specific.activities;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -16,6 +16,9 @@ import google.architecture.common.base.ARouterPath;
 import google.architecture.common.base.BaseActivity;
 import google.architecture.common.base.BaseFragment;
 import google.architecture.common.widget.NoScrollViewPager;
+import google.architecture.specific.nav_helper.BottomNavigationViewHelper;
+import google.architecture.specific.fragments.FragmentAdapter;
+import google.architecture.specific.R;
 import google.architecture.specific.databinding.ActivityMainBinding;
 
 @Route(path = ARouterPath.MainAty)

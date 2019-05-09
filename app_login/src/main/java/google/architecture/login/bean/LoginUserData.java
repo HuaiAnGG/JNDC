@@ -1,7 +1,9 @@
-package google.architecture.login;
+package google.architecture.login.bean;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+
+import google.architecture.login.BR;
 
 public class LoginUserData extends BaseObservable {
 

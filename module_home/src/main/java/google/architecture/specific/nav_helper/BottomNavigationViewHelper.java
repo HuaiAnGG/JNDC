@@ -1,4 +1,4 @@
-package google.architecture.specific;
+package google.architecture.specific.nav_helper;
 
 import android.annotation.SuppressLint;
 import android.support.design.internal.BottomNavigationItemView;

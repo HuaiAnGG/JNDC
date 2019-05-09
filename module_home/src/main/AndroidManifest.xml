@@ -3,7 +3,8 @@
 
     <application>
 
-        <activity android:name=".ActivityMain"/>
+        <activity android:name=".activities.ActivityMain"
+            android:launchMode="singleTop"/>
 
     </application>
 

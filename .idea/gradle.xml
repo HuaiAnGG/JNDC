@@ -14,7 +14,7 @@
             <option value="$PROJECT_DIR$/lib_opensource" />
             <option value="$PROJECT_DIR$/module_home" />
             <option value="$PROJECT_DIR$/module_news" />
-            <option value="$PROJECT_DIR$/module_todo" />
+            <option value="$PROJECT_DIR$/module_pending" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
