@@ -8,13 +8,15 @@
             type="google.architecture.coremodel.datamodel.http.entities.TodoData.ConsoleResultsBean"/>
         <variable name="consoleCallback"
             type="google.architecture.pending.console.TodoConsoleClickCallback"/>
+        <variable name="position"
+            type="int" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/size_6dp"
-        android:onClick="@{() ->  consoleCallback.onClick(consoleItem)}"
+        android:onClick="@{() ->  consoleCallback.onClick(consoleItem, position)}"
         android:orientation="vertical">
 
         <ImageView

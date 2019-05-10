@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
@@ -18,7 +19,8 @@ import google.architecture.pending.utils.Constants;
  * @author: HuaiAngg
  * @create: 2019-05-04 20:36
  */
-public class TodoConsoleAdapter extends RecyclerView.Adapter<TodoConsoleAdapter.TodoConsoleViewHolder> {
+public class TodoConsoleAdapter extends RecyclerView.Adapter<TodoConsoleAdapter.TodoConsoleViewHolder>
+implements View.OnClickListener{
 
     List<TodoData.ConsoleResultsBean> consoleList;
     TodoConsoleClickCallback consoleItemClickCallback;
@@ -64,11 +66,12 @@ public class TodoConsoleAdapter extends RecyclerView.Adapter<TodoConsoleAdapter.
     }
 
     @Override
-    public TodoConsoleViewHolder onCreateViewHolder(ViewGroup parent, int positon) {
+    public TodoConsoleViewHolder onCreateViewHolder(ViewGroup parent, int position) {
         TodoConsoleItemBinding binding = DataBindingUtil
                 .inflate(LayoutInflater.from(parent.getContext()), R.layout.todo_console_item,
                         parent, false);
         binding.setConsoleCallback(consoleItemClickCallback);
+//        binding.setPosition(position);
         return new TodoConsoleViewHolder(binding);
     }
 
@@ -76,12 +79,18 @@ public class TodoConsoleAdapter extends RecyclerView.Adapter<TodoConsoleAdapter.
     public void onBindViewHolder(TodoConsoleViewHolder holder, int position) {
         holder.binding.setConsoleItem(consoleList.get(position));
         holder.binding.todoConsoleListIcon.setImageResource(Constants.TODO_CONSOLE_LIST_ICON[position]);
+        holder.binding.setPosition(position);
         holder.binding.executePendingBindings();
     }
 
     @Override
     public int getItemCount() {
         return consoleList == null ? null : consoleList.size();
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 
     static class TodoConsoleViewHolder extends RecyclerView.ViewHolder {

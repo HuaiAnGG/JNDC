@@ -1,2 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="google.architecture.pending" />
+    package="google.architecture.pending">
+
+    <application>
+        <activity
+            android:name=".console.video.VideoActivity"
+            android:launchMode="singleTop"
+            android:label="@string/title_activity_video"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+    </application>
+
+</manifest>

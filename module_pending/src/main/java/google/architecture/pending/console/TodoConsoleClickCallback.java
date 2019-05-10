@@ -8,5 +8,5 @@ import google.architecture.coremodel.datamodel.http.entities.TodoData;
  * @create: 2019-05-04 18:49
  */
 public interface TodoConsoleClickCallback {
-    void onClick(TodoData.ConsoleResultsBean newsItem);
+    void onClick(TodoData.ConsoleResultsBean newsItem, int position);
 }

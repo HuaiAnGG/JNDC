@@ -6,7 +6,7 @@ package google.architecture.common.base;
  *
  * Aty : Activity
  * Fgt : Fragment
- *
+ * notice :  the path must be start with '/' and contain more than 2 '/'!
  */
 
 public class ARouterPath {
@@ -35,6 +35,9 @@ public class ARouterPath {
     /**主界面Activity*/
     public static final String MainAty = "/home/aty/list";
 
-    /**待办Fragment*/
+    /**工作待办Fragment*/
     public static final String PendingFgt = "/pending/fgt/list";
+
+    /** 控制台 -- >> 视频监控 */
+    public static final String CONSOLE_VIDEO_ATY = "/video/pending/act/list";
 }

@@ -69,12 +69,26 @@ public class TodoFragment extends BaseFragment {
         return todoDataBinding.getRoot();
     }
 
-    // 控制台
+    // 控制台回调事件
     TodoConsoleClickCallback consoleClickCallback = new TodoConsoleClickCallback() {
         @Override
-        public void onClick(TodoData.ConsoleResultsBean newsItem) {
-            Toast.makeText(getContext(), newsItem.getName(), Toast.LENGTH_SHORT).show();
+        public void onClick(TodoData.ConsoleResultsBean newsItem, int position) {
+            switch (position) {
+                case 1:
+                    Log.i("danxx", "onClick toGirls");
+                    //跳转到VideoActivity
+                    ARouter.getInstance()
+                            .build(ARouterPath.CONSOLE_VIDEO_ATY)
+                            /**可以针对性跳转跳转动画*/
+                            .withTransition(R.anim.activity_up_in, R.anim.activity_up_out)
+                            .navigation(getContext());
+                    break;
+                default:
+                    Toast.makeText(getContext(), newsItem.getName() + position, Toast.LENGTH_SHORT).show();
+                    break;
+            }
         }
+
     };
 
     // 通知
