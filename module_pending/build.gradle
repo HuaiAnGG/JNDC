@@ -44,5 +44,7 @@ dependencies {
 
     api project(':lib_coremodel')
     api project(':lib_common')
+
+    implementation 'com.wenwenwen888:searchbox:1.0.1'
     annotationProcessor deps.arouter.compiler
 }

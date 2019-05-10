@@ -9,6 +9,8 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.wyt.searchbox.SearchFragment;
+import com.wyt.searchbox.custom.IOnSearchClickListener;
 
 import google.architecture.common.base.ARouterPath;
 import google.architecture.common.base.BaseActivity;
@@ -30,8 +32,28 @@ public class VideoActivity extends BaseActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("监控列表");
+
+        SearchFragment searchFragment = SearchFragment.newInstance();
+        searchFragment.setOnSearchClickListener(iOnSearchClickListener);
+        // 显示搜索框
+//        searchFragment.showFragment(getSupportFragmentManager(), SearchFragment.TAG);
     }
 
+    /**
+     * search dialog
+     */
+    IOnSearchClickListener iOnSearchClickListener = new IOnSearchClickListener() {
+        @Override
+        public void OnSearchClick(String keyword) {
+
+        }
+    };
+
+    /**
+     * back to prev
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

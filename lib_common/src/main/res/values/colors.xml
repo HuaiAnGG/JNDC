@@ -2,9 +2,9 @@
 <resources>
 
     <!--基础主色-->
-    <color name="colorPrimary">#31373d</color>
-    <color name="colorPrimaryDark">#31373d</color>
-    <color name="colorAccent">#1572fc</color>
+    <color name="colorPrimary">#1572fc</color>
+    <color name="colorPrimaryDark">#1e68af</color>
+    <color name="colorAccent">#31373d</color>
     <color name="colorLight">@color/white</color>
     <color name="colorDark">@color/black</color>
     <color name="colorAccentAlpha">#801572fc</color>
