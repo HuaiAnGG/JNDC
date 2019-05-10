@@ -78,6 +78,20 @@ dependencies {
     // qmui
     api deps.qmui
 
+    // luban
+    api deps.luban
+    // gms
+    api deps.gms
+
+    // ijkplayer
+    api deps.ijkplayer.java
+    api deps.ijkplayer.armv7a
+    api deps.ijkplayer.armv5
+//    api deps.ijkplayer.arm64
+    api deps.ijkplayer.x86
+//    api deps.ijkplayer.x86_64
+    api deps.ijkplayer.exo
+
     api files('libs\\core_auth_iscs_v1.0-release.aar',
             'libs\\core_message_3_v1.0-release.aar',
             'libs\\core_basic_v1.0-release.aar'
@@ -88,8 +102,15 @@ dependencies {
 //            'libs\\swipebacklayoutlib-release.aar',
 //            'libs\\xutils_v3.3.12-release.aar'
     )
-    api 'com.google.android.gms:play-services-auth:16.0.0'
     api files('libs\\ivms-release.aar')
+//    api files('libs\\core_location-release.aar')
+//    api files('libs\\core_push-release.aar')
+    api files('libs\\core_social-release.aar')
+    api files('libs\\multi-image-selector-release.aar')
+    api files('libs\\swipebacklayoutlib-release.aar')
+    api files('libs\\xutils_v3.3.12-release.aar')
+
+//    api 'com.google.android.gms:play-services-auth:16.0.1'
 }
 
 uploadArchives {

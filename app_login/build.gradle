@@ -18,6 +18,9 @@ android {
                 arguments = [moduleName: project.getName()]
             }
         }
+
+        // multiDex
+        multiDexEnabled true
     }
 
     buildTypes {

@@ -48,7 +48,6 @@ public class LoginActivity extends BaseActivity {
                 LoginActivity.this, R.layout.activity_login);
 //        binding.setItemClick(itemClick);
         binding.loginBtn.setOnClickListener(loginBtnOnclickListener);
-
     }
 
     View.OnClickListener loginBtnOnclickListener
