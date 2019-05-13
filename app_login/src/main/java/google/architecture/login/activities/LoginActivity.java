@@ -1,6 +1,5 @@
 package google.architecture.login.activities;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -20,11 +19,13 @@ import com.just.core.http.HttpTask;
 import com.just.core.listener.MessageCallbackListener;
 import com.just.core.message.ResponseMessage;
 import com.just.core.util.MD5;
+import com.showjoy.android.storage.SHStorageManager;
 
 import org.json.ext.JSONObject;
 
 import google.architecture.common.base.ARouterPath;
 import google.architecture.common.base.BaseActivity;
+import google.architecture.common.util.StorageUtils;
 import google.architecture.coremodel.viewmodel.LoginViewModel;
 import google.architecture.login.R;
 import google.architecture.login.bean.HeaderList;
@@ -110,13 +111,16 @@ public class LoginActivity extends BaseActivity {
                                 Log.e("======!!!!!====", str);
                             }
 
-                            mPreferences = getSharedPreferences("token_table", Context.MODE_PRIVATE);
-                            if (mPreferences != null && !mPreferences.contains("user_token")) {
-                                SharedPreferences.Editor editor = mPreferences.edit();
-                                HeaderList headerList = json2HeaderBean(str);
-                                editor.putString("user_token", headerList.getToken());
-                                editor.apply();
-                            }
+//                            mPreferences = getSharedPreferences("token_table", Context.MODE_PRIVATE);
+//                            if (mPreferences != null && !mPreferences.contains("user_token")) {
+//                                SharedPreferences.Editor editor = mPreferences.edit();
+                            HeaderList headerList = json2HeaderBean(str);
+//                                editor.putString("user_token", headerList.getToken());
+//                                editor.apply();
+//                            }
+
+                            //存储到disk的数据，这里会先存到cache，再存储到disk
+                            StorageUtils.saveInDisk("SP_TOKEN", "token", headerList.getToken());
 
                             Toast.makeText(getApplicationContext(),
                                     "登录成功!!!", Toast.LENGTH_SHORT).show();
@@ -164,8 +168,6 @@ public class LoginActivity extends BaseActivity {
         // 验证模式
         httpHeader.setAuthModel(AuthModel.AUTH_LOGIN);
         httpTask.getRequestMessage().header.setHttpHeader(httpHeader);
-//        httpTask.getRequestMessage().header.setAppcode("A024");
-//        httpTask.getRequestMessage().header.setFunc("loginApp");
         String username;
         String password;
         username = binding.username.getText().toString().trim();

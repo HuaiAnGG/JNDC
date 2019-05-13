@@ -19,6 +19,9 @@ android {
             }
         }
     }
+    dexOptions {
+        javaMaxHeapSize "4096M"
+    }
 
     buildTypes {
         release {
@@ -29,6 +32,7 @@ android {
     dataBinding {
         enabled = true
     }
+
     lintOptions {
         abortOnError false
     }

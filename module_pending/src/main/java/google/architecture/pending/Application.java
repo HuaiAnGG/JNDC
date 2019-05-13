@@ -1,9 +1,8 @@
-package google.architecture.login.common;
+package google.architecture.pending;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -17,22 +16,19 @@ import com.showjoy.android.storage.SHStorageManager;
 import google.architecture.common.base.ARouterPath;
 import google.architecture.common.base.BaseApplication;
 import google.architecture.common.util.Utils;
-import google.architecture.login.R;
-import google.architecture.login.activities.LoginActivity;
 
 /**
- * Created by dxx on 2017/11/13.
+ * @description:
+ * @author: HuaiAngg
+ * @create: 2019-05-13 14:57
  */
-
-public class Application extends BaseApplication{
-
-    SharedPreferences sp;
+public class Application extends BaseApplication {
 
     @Override
     public void onCreate() {
         super.onCreate();
         Fresco.initialize(this);
-        
+
         if (Utils.isAppDebug()) {
             //开启InstantRun之后，一定要在ARouter.init之前调用openDebug
             ARouter.openDebug();
@@ -56,17 +52,5 @@ public class Application extends BaseApplication{
             e.printStackTrace();
         }
 
-//        sp = getSharedPreferences("token_table", Context.MODE_PRIVATE);
-//        if (sp != null) {
-//            String token = sp.getString("user_token", "");
-//            if (!TextUtils.isEmpty(token)) {
-//                Log.e("LoginActivity --> Token", token);
-//                ARouter.getInstance()
-//                        .build(ARouterPath.MainAty)
-//                        // 可以针对性跳转跳转动画
-//                        .withTransition(R.anim.activity_up_in, R.anim.activity_up_out)
-//                        .navigation(getApplicationContext());
-//            }
-//        }
     }
 }

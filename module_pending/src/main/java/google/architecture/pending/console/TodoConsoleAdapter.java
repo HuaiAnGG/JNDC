@@ -71,7 +71,6 @@ implements View.OnClickListener{
                 .inflate(LayoutInflater.from(parent.getContext()), R.layout.todo_console_item,
                         parent, false);
         binding.setConsoleCallback(consoleItemClickCallback);
-//        binding.setPosition(position);
         return new TodoConsoleViewHolder(binding);
     }
 

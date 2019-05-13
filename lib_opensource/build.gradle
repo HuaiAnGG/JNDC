@@ -110,7 +110,8 @@ dependencies {
     api files('libs\\swipebacklayoutlib-release.aar')
     api files('libs\\xutils_v3.3.12-release.aar')
 
-//    api 'com.google.android.gms:play-services-auth:16.0.1'
+    // 统一的存储模块SHStorageManager
+    api 'com.showjoy.android:storage:2.0.0'
 }
 
 uploadArchives {

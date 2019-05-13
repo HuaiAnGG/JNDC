@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="equipmentItem"
+            type="google.architecture.coremodel.datamodel.http.entities.VideoListData.BodyBean.Equipment" />
+
+        <variable
+            name="videoItemClickCallback"
+            type="google.architecture.pending.console.video.VideoListClickCallback"/>
+
+        <!--<variable-->
+            <!--name="position"-->
+            <!--type="int"/>-->
+    </data>
+
+    <RelativeLayout
+        android:onClick="@{() -> videoItemClickCallback.onClick(equipmentItem)}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/video_icon"
+            android:src="@drawable/workpending_video_ic"
+            android:layout_marginLeft="@dimen/size_12dp"
+            android:padding="@dimen/size_8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_12dp" />
+
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/video_icon"
+            android:layout_marginLeft="@dimen/size_12dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/video_icon"
+            android:layout_marginStart="@dimen/size_12dp">
+
+            <TextView
+                android:id="@+id/video_name"
+                android:textSize="@dimen/text_size_20sp"
+                android:textColor="#333333"
+                tools:text="@string/video_name"
+                android:text="@{equipmentItem.deviceName}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/video_factory_name"
+                tools:text="@string/video_factory_name"
+                android:text="@{equipmentItem.deviceLocation}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>
