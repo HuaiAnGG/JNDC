@@ -126,7 +126,6 @@ public class TodoFragment extends BaseFragment {
             public void onChanged(@Nullable TodoData todoData) {
                 Log.i("danxx", "subscribeToModel onChanged onChanged");
                 model.setUiObservableData(todoData);
-
                 // 设置数据列表
                 consoleAdapter.setConsoleList(todoData.getConsoleResults());
                 noticeAdapter.setNoticeList(todoData.getNoticeResults());
