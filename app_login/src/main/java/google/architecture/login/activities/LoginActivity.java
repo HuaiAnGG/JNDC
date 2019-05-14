@@ -23,7 +23,7 @@ import org.json.ext.JSONObject;
 
 import google.architecture.common.base.ARouterPath;
 import google.architecture.common.base.BaseActivity;
-import google.architecture.common.util.StorageUtils;
+import google.architecture.common.util.SPUtils;
 import google.architecture.coremodel.viewmodel.LoginViewModel;
 import google.architecture.login.R;
 import google.architecture.login.bean.HeaderList;
@@ -108,7 +108,7 @@ public class LoginActivity extends BaseActivity {
                             // 获取响应头
                             HeaderList headerList = json2HeaderBean(str);
                             //存储到disk的数据，这里会先存到cache，再存储到disk
-                            StorageUtils.saveInDisk("SP_TOKEN", "token", headerList.getToken());
+                            SPUtils.saveInDisk("SP_TOKEN", "token", headerList.getToken());
 
                             Toast.makeText(getApplicationContext(),
                                     "登录成功!!!", Toast.LENGTH_SHORT).show();

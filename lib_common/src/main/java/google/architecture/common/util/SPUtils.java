@@ -7,7 +7,7 @@ import com.showjoy.android.storage.SHStorageManager;
  * @author: HuaiAngg
  * @create: 2019-05-13 18:00
  */
-public class StorageUtils {
+public class SPUtils {
 
     /**
      * 存储内存缓存

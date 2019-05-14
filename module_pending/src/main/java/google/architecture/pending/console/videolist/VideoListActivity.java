@@ -1,4 +1,4 @@
-package google.architecture.pending.console.video;
+package google.architecture.pending.console.videolist;
 
 import android.arch.lifecycle.Observer;
 import android.databinding.DataBindingUtil;
@@ -20,7 +20,7 @@ import google.architecture.coremodel.viewmodel.ViewModelProviders;
 import google.architecture.pending.R;
 import google.architecture.pending.databinding.ActivityListVideoBinding;
 
-@Route(path = ARouterPath.CONSOLE_VIDEO_ATY)
+@Route(path = ARouterPath.CONSOLE_VIDEO_LIST_ATY)
 public class VideoListActivity extends BaseActivity {
 
     ActivityListVideoBinding activityListVideoBinding;

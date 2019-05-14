@@ -11,7 +11,7 @@
             type="google.architecture.coremodel.datamodel.http.entities.VideoListData.BodyBean.Equipment" />
         <variable
             name="videoItemClickCallback"
-            type="google.architecture.pending.console.video.VideoListClickCallback"/>
+            type="google.architecture.pending.console.videolist.VideoListClickCallback"/>
         <variable
             name="position"
             type="int"/>

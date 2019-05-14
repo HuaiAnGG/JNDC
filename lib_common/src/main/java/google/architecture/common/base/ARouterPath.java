@@ -39,5 +39,8 @@ public class ARouterPath {
     public static final String PendingFgt = "/pending/fgt/list";
 
     /** 控制台 -- >> 视频监控 */
-    public static final String CONSOLE_VIDEO_ATY = "/video/pending/act/list";
+    public static final String CONSOLE_VIDEO_LIST_ATY = "/video/pending/act/list";
+
+    /** 视频监控列表 -->> 详细页**/
+    public static final String CONSOLE_VIDEO_DETAIL_ATY = "/detail/video/pending/act/list";
 }

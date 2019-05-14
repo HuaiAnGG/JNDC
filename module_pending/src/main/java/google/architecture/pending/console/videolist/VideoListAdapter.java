@@ -1,4 +1,4 @@
-package google.architecture.pending.console.video;
+package google.architecture.pending.console.videolist;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.util.DiffUtil;

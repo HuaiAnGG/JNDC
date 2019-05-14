@@ -1,4 +1,4 @@
-package google.architecture.pending.console.video;
+package google.architecture.pending.console.videolist;
 
 import google.architecture.coremodel.datamodel.http.entities.VideoListData;
 

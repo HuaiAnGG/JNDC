@@ -78,7 +78,7 @@ public class TodoFragment extends BaseFragment {
                     Log.i("danxx", "onClick toGirls");
                     //跳转到VideoActivity
                     ARouter.getInstance()
-                            .build(ARouterPath.CONSOLE_VIDEO_ATY)
+                            .build(ARouterPath.CONSOLE_VIDEO_LIST_ATY)
                             .withTransition(R.anim.activity_up_in, R.anim.activity_up_out)
                             .navigation(getContext());
                     break;

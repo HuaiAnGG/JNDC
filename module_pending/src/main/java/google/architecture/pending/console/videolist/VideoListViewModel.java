@@ -1,4 +1,4 @@
-package google.architecture.pending.console.video;
+package google.architecture.pending.console.videolist;
 
 import android.app.Application;
 import android.arch.core.util.Function;
@@ -26,7 +26,7 @@ import com.just.core.message.ResponseMessage;
 import org.json.ext.JSONObject;
 
 import google.architecture.common.util.Constants;
-import google.architecture.common.util.StorageUtils;
+import google.architecture.common.util.SPUtils;
 import google.architecture.coremodel.datamodel.http.entities.VideoListData;
 import google.architecture.coremodel.util.NetUtils;
 import io.reactivex.disposables.CompositeDisposable;
@@ -75,7 +75,7 @@ public class VideoListViewModel extends AndroidViewModel {
                         // 设置IP
                         httpHeader.setUrl(CoreConfig.domainUrl);
                         // 取出token
-                        String token = StorageUtils.getStringInCache("SP_TOKEN", "token", "null");
+                        String token = SPUtils.getStringInCache("SP_TOKEN", "token", "null");
                         Log.e("TOKEN", "==================" + token);
                         // 设置token
 //                        httpHeader.setToken(token);
@@ -127,6 +127,8 @@ public class VideoListViewModel extends AndroidViewModel {
                             if (!TextUtils.isEmpty(str)) {
                                 str = body.toString();
                                 Log.e("======!!!!!====", str);
+                                // 保存上次获取的bodyBean
+                                SPUtils.saveInDisk("EQUIPMENT_LIST", "bodyBean", str);
                                 VideoListData videoListData = new VideoListData();
                                 VideoListData.BodyBean bodyBean = new Gson().fromJson(str,
                                         new TypeToken<VideoListData.BodyBean>(){}.getType());

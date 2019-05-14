@@ -3,4 +3,14 @@
     <string name="title_activity_video">VideoActivity</string>
     <string name="video_name">设备名称_test</string>
     <string name="video_factory_name">厂区名称_test</string>
+    <string name="title_activity_video_detail">查看监控</string>
+    <string name="monitoring_video_back_text">视频回看</string>
+    <string name="monitoring_video_photograph_text">巡线抓拍</string>
+    <string name="monitoring_video_download_text">录像下载</string>
+    <string name="monitoring_video_collect_text">收藏设备</string>
+    <string name="monitor_video_detail_title">设备信息</string>
+    <string name="monitor_video_detail_name">设备名称</string>
+    <string name="monitor_video_detail_factory">所属工区</string>
+    <string name="monitor_video_detail_location">所属站点</string>
+    <string name="monitor_video_detail_way">所属线路</string>
 </resources>
