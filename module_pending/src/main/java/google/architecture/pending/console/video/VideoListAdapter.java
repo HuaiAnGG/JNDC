@@ -17,12 +17,12 @@ import google.architecture.pending.databinding.VideoListItemBinding;
  * @author: HuaiAngg
  * @create: 2019-05-13 10:15
  */
-public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHolder> {
+public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.VideoViewHolder> {
 
     List<VideoListData.BodyBean.Equipment> equipmentList;
     VideoListClickCallback videoListClickCallback;
 
-    public VideoAdapter(VideoListClickCallback callback) {
+    public VideoListAdapter(VideoListClickCallback callback) {
         this.videoListClickCallback = callback;
     }
 
@@ -67,7 +67,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     }
 
     @Override
-    public VideoAdapter.VideoViewHolder onCreateViewHolder(ViewGroup parent, int position) {
+    public VideoListAdapter.VideoViewHolder onCreateViewHolder(ViewGroup parent, int position) {
         VideoListItemBinding itemBinding = DataBindingUtil
                 .inflate(LayoutInflater.from(parent.getContext()), R.layout.video_list_item,
                         parent, false);

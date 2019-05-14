@@ -24,8 +24,8 @@ import google.architecture.pending.databinding.ActivityListVideoBinding;
 public class VideoListActivity extends BaseActivity {
 
     ActivityListVideoBinding activityListVideoBinding;
-    private VideoAdapter videoAdapter;
-    private VideoViewModel videoViewModel;
+    private VideoListAdapter videoListAdapter;
+    private VideoListViewModel videoListViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +47,13 @@ public class VideoListActivity extends BaseActivity {
 //        searchFragment.showFragment(getSupportFragmentManager(), SearchFragment.TAG);
 
         // 获取Video Model
-        videoViewModel = ViewModelProviders.of(VideoListActivity.this).get(VideoViewModel.class);
+        videoListViewModel = ViewModelProviders.of(VideoListActivity.this).get(VideoListViewModel.class);
 
         // 视频列表adapter
-        videoAdapter = new VideoAdapter(videoListClickCallback);
-        activityListVideoBinding.setRecyclerAdapter(videoAdapter);
+        videoListAdapter = new VideoListAdapter(videoListClickCallback);
+        activityListVideoBinding.setRecyclerAdapter(videoListAdapter);
         // 传入Video ViewModel
-        subscribeToModel(videoViewModel);
+        subscribeToModel(videoListViewModel);
     }
 
     VideoListClickCallback videoListClickCallback
@@ -94,7 +94,7 @@ public class VideoListActivity extends BaseActivity {
      *
      * @param model
      */
-    private void subscribeToModel(final VideoViewModel model) {
+    private void subscribeToModel(final VideoListViewModel model) {
         //观察数据变化来刷新UI
         model.getLiveObservableData().observe(VideoListActivity.this, new Observer<VideoListData>() {
             @Override
@@ -102,7 +102,7 @@ public class VideoListActivity extends BaseActivity {
                 Log.i("danxx", "subscribeToModel onChanged onChanged");
                 model.setUiObservableData(videoListData);
                 // 设置数据列表
-                videoAdapter.setVideoList(videoListData.getBody().getList());
+                videoListAdapter.setVideoList(videoListData.getBody().getList());
             }
         });
     }

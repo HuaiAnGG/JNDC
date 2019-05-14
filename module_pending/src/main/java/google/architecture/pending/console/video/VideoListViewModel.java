@@ -36,7 +36,7 @@ import io.reactivex.disposables.CompositeDisposable;
  * @author: HuaiAngg
  * @create: 2019-05-13 12:40
  */
-public class VideoViewModel extends AndroidViewModel {
+public class VideoListViewModel extends AndroidViewModel {
     // TODO: Implement the ViewModel
     private static final MutableLiveData ABSENT = new MutableLiveData();
 
@@ -50,7 +50,7 @@ public class VideoViewModel extends AndroidViewModel {
     private HttpTask httpTask;
     private MutableLiveData<VideoListData> applyData;
 
-    public VideoViewModel(@NonNull Application application) {
+    public VideoListViewModel(@NonNull Application application) {
         super(application);
         ABSENT.setValue((Object)null);
         this.uiObservableData = new ObservableField();
@@ -106,7 +106,7 @@ public class VideoViewModel extends AndroidViewModel {
 
                     @Override
                     public void onMessageResponse(HttpTask httpTask, ResponseMessage responseMessage) {
-                        Log.d("VideoViewModel", "onMessageResponse: " + responseMessage.getJsonText());
+                        Log.d("VideoListViewModel", "onMessageResponse: " + responseMessage.getJsonText());
 
                         if (responseMessage == null) {
                             Log.i("******************", "ResponseMessage is null!");
