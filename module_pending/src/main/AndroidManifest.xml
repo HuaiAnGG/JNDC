@@ -10,7 +10,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".console.videodetails.VideoDetailActivity"
-            android:label="@string/title_activity_video_detail" />
+            android:label="@string/title_activity_video_detail"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
