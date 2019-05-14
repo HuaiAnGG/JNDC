@@ -19,7 +19,7 @@ public class VideoDetailActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DataBindingUtil.setContentView(this, R.layout.activity_video_detail);
+        activityVideoDetailBinding = DataBindingUtil.setContentView(this, R.layout.activity_video_detail);
         // ARouter
         ARouter.getInstance().inject(this);
 
@@ -28,7 +28,6 @@ public class VideoDetailActivity extends BaseActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("监控列表");
-
     }
 
 }

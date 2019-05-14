@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -60,8 +59,22 @@ public class VideoListActivity extends BaseActivity {
             = new VideoListClickCallback() {
         @Override
         public void onClick(VideoListData.BodyBean.Equipment equipment, int position) {
-            Toast.makeText(VideoListActivity.this,
-                    equipment.getDeviceName() + position , Toast.LENGTH_SHORT).show();
+            switch (position) {
+                case 1:
+                    break;
+                case 2:
+                    /**
+                     * 转跳到 VideoDetailActivity
+                     */
+                    Log.d("VideoListClickCallback", "onClick: " + equipment.getDeviceName() + "\t" + position);
+                    ARouter.getInstance()
+                            .build(ARouterPath.CONSOLE_VIDEO_DETAIL_ATY)
+                            .withTransition(R.anim.activity_up_in, R.anim.activity_up_out)
+                            .navigation(getApplicationContext());
+                    break;
+                default:
+                    break;
+            }
         }
     };
 
@@ -77,6 +90,7 @@ public class VideoListActivity extends BaseActivity {
 
     /**
      * back to prev
+     *
      * @param item
      * @return
      */
