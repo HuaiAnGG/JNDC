@@ -4,7 +4,7 @@
 
     <application>
         <activity
-            android:name=".console.video.VideoActivity"
+            android:name=".console.video.VideoListActivity"
             android:launchMode="singleTop"
             android:label="@string/title_activity_video"
             android:theme="@style/AppTheme.NoActionBar"></activity>

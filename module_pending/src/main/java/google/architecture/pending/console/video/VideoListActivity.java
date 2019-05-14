@@ -18,24 +18,24 @@ import google.architecture.common.base.BaseActivity;
 import google.architecture.coremodel.datamodel.http.entities.VideoListData;
 import google.architecture.coremodel.viewmodel.ViewModelProviders;
 import google.architecture.pending.R;
-import google.architecture.pending.databinding.ActivityVideoBinding;
+import google.architecture.pending.databinding.ActivityListVideoBinding;
 
 @Route(path = ARouterPath.CONSOLE_VIDEO_ATY)
-public class VideoActivity extends BaseActivity {
+public class VideoListActivity extends BaseActivity {
 
-    ActivityVideoBinding activityVideoBinding;
+    ActivityListVideoBinding activityListVideoBinding;
     private VideoAdapter videoAdapter;
     private VideoViewModel videoViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityVideoBinding = DataBindingUtil
-                .setContentView(VideoActivity.this, R.layout.activity_video);
+        activityListVideoBinding = DataBindingUtil
+                .setContentView(VideoListActivity.this, R.layout.activity_list_video);
         // ARouter
         ARouter.getInstance().inject(this);
 
-        setSupportActionBar(activityVideoBinding.toolbar);
+        setSupportActionBar(activityListVideoBinding.toolbar);
         // 返回导航键
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -44,14 +44,14 @@ public class VideoActivity extends BaseActivity {
         SearchFragment searchFragment = SearchFragment.newInstance();
         searchFragment.setOnSearchClickListener(iOnSearchClickListener);
         // 显示搜索框
-////        searchFragment.showFragment(getSupportFragmentManager(), SearchFragment.TAG);
+//        searchFragment.showFragment(getSupportFragmentManager(), SearchFragment.TAG);
 
         // 获取Video Model
-        videoViewModel = ViewModelProviders.of(VideoActivity.this).get(VideoViewModel.class);
+        videoViewModel = ViewModelProviders.of(VideoListActivity.this).get(VideoViewModel.class);
 
         // 视频列表adapter
         videoAdapter = new VideoAdapter(videoListClickCallback);
-        activityVideoBinding.setRecyclerAdapter(videoAdapter);
+        activityListVideoBinding.setRecyclerAdapter(videoAdapter);
         // 传入Video ViewModel
         subscribeToModel(videoViewModel);
     }
@@ -60,7 +60,7 @@ public class VideoActivity extends BaseActivity {
             = new VideoListClickCallback() {
         @Override
         public void onClick(VideoListData.BodyBean.Equipment equipment, int position) {
-            Toast.makeText(VideoActivity.this,
+            Toast.makeText(VideoListActivity.this,
                     equipment.getDeviceName() + position , Toast.LENGTH_SHORT).show();
         }
     };
@@ -96,7 +96,7 @@ public class VideoActivity extends BaseActivity {
      */
     private void subscribeToModel(final VideoViewModel model) {
         //观察数据变化来刷新UI
-        model.getLiveObservableData().observe(VideoActivity.this, new Observer<VideoListData>() {
+        model.getLiveObservableData().observe(VideoListActivity.this, new Observer<VideoListData>() {
             @Override
             public void onChanged(@Nullable VideoListData videoListData) {
                 Log.i("danxx", "subscribeToModel onChanged onChanged");
