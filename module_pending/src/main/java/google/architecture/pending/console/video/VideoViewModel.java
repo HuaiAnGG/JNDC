@@ -6,15 +6,12 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.apkfuns.logutils.LogUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -28,17 +25,11 @@ import com.just.core.message.ResponseMessage;
 
 import org.json.ext.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import google.architecture.common.base.ARouterPath;
+import google.architecture.common.util.Constants;
 import google.architecture.common.util.StorageUtils;
 import google.architecture.coremodel.datamodel.http.entities.VideoListData;
 import google.architecture.coremodel.util.NetUtils;
-import google.architecture.pending.console.video.bean.HeaderList;
 import io.reactivex.disposables.CompositeDisposable;
-
-import static com.tencent.open.utils.Global.getSharedPreferences;
 
 /**
  * @description:
@@ -54,10 +45,9 @@ public class VideoViewModel extends AndroidViewModel {
     }
 
     private LiveData<VideoListData> mLiveObservableData;
-    public ObservableField<VideoListData> uiObservableData;
+    private ObservableField<VideoListData> uiObservableData;
     private final CompositeDisposable mDisposable;
     private HttpTask httpTask;
-    private SharedPreferences mPreference;
     private MutableLiveData<VideoListData> applyData;
 
     public VideoViewModel(@NonNull Application application) {
@@ -74,7 +64,7 @@ public class VideoViewModel extends AndroidViewModel {
                             initHttpTask();
                         }
 
-                        CoreConfig.domainUrl = "http://oa.leadisoft.com:18081/lead_portal";
+                        CoreConfig.domainUrl = Constants.APP_URL;
 
                         Log.e("--Application", "-> " + CoreConfig.domainUrl);
 
@@ -117,8 +107,6 @@ public class VideoViewModel extends AndroidViewModel {
                     @Override
                     public void onMessageResponse(HttpTask httpTask, ResponseMessage responseMessage) {
                         Log.d("VideoViewModel", "onMessageResponse: " + responseMessage.getJsonText());
-                        Log.d("VideoViewModel", "Status: " + responseMessage.header.getStatus());
-//                        Log.d("VideoViewModel", "List: " + responseMessage.body.getBody().optString("list"));
 
                         if (responseMessage == null) {
                             Log.i("******************", "ResponseMessage is null!");
@@ -157,8 +145,6 @@ public class VideoViewModel extends AndroidViewModel {
 
                     @Override
                     public void onFinished(HttpTask httpTask) {
-//                        Toast.makeText(getApplication(),
-//                                "加载成功!!!", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -168,34 +154,17 @@ public class VideoViewModel extends AndroidViewModel {
                 });
     }
 
-    private VideoListData.BodyBean json2BodyBean(String json) {
-        VideoListData.BodyBean bodyBeanList  = new Gson().fromJson(json,
-                new TypeToken<List<VideoListData.BodyBean>>(){}.getType());
-        return bodyBeanList;
-    }
-
-
-    private HeaderList json2HeaderBean(String json) {
-        Gson gson = new Gson();
-        HeaderList headerList = gson.fromJson(json, HeaderList.class);
-        return headerList;
-    }
-
-    public LiveData<VideoListData> getLiveObservableData() {
+    LiveData<VideoListData> getLiveObservableData() {
         return this.mLiveObservableData;
     }
 
-    public void setmLiveObservableData(LiveData<VideoListData> mLiveObservableData) {
-        this.mLiveObservableData = mLiveObservableData;
-    }
-
-    public void setUiObservableData(VideoListData product) {
+    void setUiObservableData(VideoListData product) {
         this.uiObservableData.set(product);
     }
 
     protected void onCleared() {
         super.onCleared();
         this.mDisposable.clear();
-        LogUtils.d("=======TodoViewModel--onCleared=========");
+        LogUtils.d("=======TodoViewModel--Cleared=========");
     }
 }

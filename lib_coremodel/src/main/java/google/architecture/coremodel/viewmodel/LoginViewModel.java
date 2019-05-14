@@ -4,19 +4,17 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.content.Intent;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import google.architecture.coremodel.R;
 import google.architecture.coremodel.datamodel.http.entities.LoginData;
 import io.reactivex.disposables.CompositeDisposable;
 
 public class LoginViewModel extends AndroidViewModel {
 
     private static final MutableLiveData ABSENT = new MutableLiveData();
-    {
+    static {
         //noinspection unchecked
         ABSENT.setValue(null);
     }

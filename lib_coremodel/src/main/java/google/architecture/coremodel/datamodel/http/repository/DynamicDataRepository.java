@@ -23,13 +23,10 @@ public class DynamicDataRepository {
                 .getDynamicDataService()
                 .getDynamicData(pullUrl)
                 .compose(SwitchSchedulers.applySchedulers())
-                .map(new Function<ResponseBody, T>() {
-                    @Override
-                    public T apply(ResponseBody responseBody) throws Exception {
+                .map((Function<ResponseBody, T>) responseBody -> {
 //                        return JsonUtil.Str2JsonBean(responseBody, clazz);
-                        Log.e("==========", responseBody.toString());
-                        return null;
-                    }
+                    Log.e("==========", responseBody.toString());
+                    return null;
                 });
     }
 

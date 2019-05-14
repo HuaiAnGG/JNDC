@@ -1,6 +1,5 @@
 package google.architecture.coremodel.datamodel.http.service;
 
-import google.architecture.coremodel.datamodel.http.Model;
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.http.GET;

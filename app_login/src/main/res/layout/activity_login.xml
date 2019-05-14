@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activities.LoginActivity">
     
@@ -53,27 +52,26 @@
                 android:id="@+id/login_icon_username"
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
                 android:layout_marginLeft="4dp"
                 android:padding="8dp"
-                android:src="@drawable/register_admin_ic" />
+                android:src="@drawable/register_admin_ic"
+                android:layout_marginStart="4dp" />
 
             <EditText
                 android:id="@+id/username"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:layout_centerInParent="true"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="8dp"
-                android:layout_toRightOf="@id/login_icon_username"
                 android:background="@null"
                 android:hint="@string/register_admin_hint"
                 android:text="@={loginUserData.userName}"
                 android:singleLine="true"
                 android:textColor="#aaaaaa"
-                android:inputType="text"/>
+                android:inputType="text"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="4dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -82,32 +80,32 @@
             android:orientation="horizontal"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:ignore="PxUsage">
 
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
                 android:layout_marginLeft="4dp"
                 android:padding="8dp"
-                android:src="@drawable/register_password_ic" />
+                android:src="@drawable/register_password_ic"
+                android:layout_marginStart="4dp" />
 
             <EditText
                 android:id="@+id/password"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_centerInParent="true"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="8dp"
-                android:layout_toRightOf="@id/login_icon_username"
                 android:background="@null"
                 android:hint="@string/register_password_hint"
                 android:text="@={loginUserData.password}"
                 android:inputType="textPassword"
                 android:singleLine="true"
-                android:textColor="#aaaaaa" />
+                android:textColor="#aaaaaa"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="4dp" />
         </LinearLayout>
 
         <TextView
@@ -122,7 +120,8 @@
             android:textSize="30px"
             android:textColorHint="#ffffff"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            tools:ignore="PxUsage" />
 
     </LinearLayout>
 

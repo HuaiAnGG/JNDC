@@ -22,8 +22,8 @@ import google.architecture.pending.utils.Constants;
 public class TodoConsoleAdapter extends RecyclerView.Adapter<TodoConsoleAdapter.TodoConsoleViewHolder>
 implements View.OnClickListener{
 
-    List<TodoData.ConsoleResultsBean> consoleList;
-    TodoConsoleClickCallback consoleItemClickCallback;
+    private List<TodoData.ConsoleResultsBean> consoleList;
+    private TodoConsoleClickCallback consoleItemClickCallback;
 
     public TodoConsoleAdapter(TodoConsoleClickCallback consoleItemClickCallback) {
         this.consoleItemClickCallback = consoleItemClickCallback;
@@ -49,14 +49,14 @@ implements View.OnClickListener{
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
                     TodoData.ConsoleResultsBean oldData = consoleList.get(oldItemPosition);
                     TodoData.ConsoleResultsBean newData = list.get(newItemPosition);
-                    return oldData.getName() == newData.getName();
+                    return oldData.getName().equals(newData.getName());
                 }
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
                     TodoData.ConsoleResultsBean oldData = consoleList.get(oldItemPosition);
                     TodoData.ConsoleResultsBean newData = list.get(newItemPosition);
-                    return oldData.getName() == newData.getName()
+                    return oldData.getName().equals(newData.getName())
                             && oldData.getIcon() == newData.getIcon();
                 }
             });
@@ -84,7 +84,7 @@ implements View.OnClickListener{
 
     @Override
     public int getItemCount() {
-        return consoleList == null ? null : consoleList.size();
+        return consoleList == null ? 0 : consoleList.size();
     }
 
     @Override
@@ -95,7 +95,7 @@ implements View.OnClickListener{
     static class TodoConsoleViewHolder extends RecyclerView.ViewHolder {
         TodoConsoleItemBinding binding;
 
-        public TodoConsoleViewHolder(TodoConsoleItemBinding binding) {
+        TodoConsoleViewHolder(TodoConsoleItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }

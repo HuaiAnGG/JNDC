@@ -1,9 +1,6 @@
 package google.architecture.login.common;
 
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.text.TextUtils;
-import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -14,11 +11,8 @@ import com.just.auth.iscs.impl.ISCSAuthImpl;
 import com.just.core.common.CoreConfig;
 import com.showjoy.android.storage.SHStorageManager;
 
-import google.architecture.common.base.ARouterPath;
 import google.architecture.common.base.BaseApplication;
 import google.architecture.common.util.Utils;
-import google.architecture.login.R;
-import google.architecture.login.activities.LoginActivity;
 
 /**
  * Created by dxx on 2017/11/13.

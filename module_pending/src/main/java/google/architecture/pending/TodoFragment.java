@@ -2,7 +2,6 @@ package google.architecture.pending;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -80,7 +79,6 @@ public class TodoFragment extends BaseFragment {
                     //跳转到VideoActivity
                     ARouter.getInstance()
                             .build(ARouterPath.CONSOLE_VIDEO_ATY)
-                            /**可以针对性跳转跳转动画*/
                             .withTransition(R.anim.activity_up_in, R.anim.activity_up_out)
                             .navigation(getContext());
                     break;
@@ -118,7 +116,7 @@ public class TodoFragment extends BaseFragment {
     /**
      * 订阅数据变化来刷新UI
      *
-     * @param model
+     * @param model TodoViewModel
      */
     private void subscribeToModel(final TodoViewModel model) {
         //观察数据变化来刷新UI
@@ -128,9 +126,9 @@ public class TodoFragment extends BaseFragment {
                 Log.i("danxx", "subscribeToModel onChanged onChanged");
                 model.setUiObservableData(todoData);
                 // 设置数据列表
-                consoleAdapter.setConsoleList(todoData.getConsoleResults());
-                noticeAdapter.setNoticeList(todoData.getNoticeResults());
-                pendingAdapter.setPendingList(todoData.getPendingResults());
+                consoleAdapter.setConsoleList(todoData != null ? todoData.getConsoleResults() : null);
+                noticeAdapter.setNoticeList(todoData != null ? todoData.getNoticeResults() : null);
+                pendingAdapter.setPendingList(todoData != null ? todoData.getPendingResults() : null);
             }
         });
     }

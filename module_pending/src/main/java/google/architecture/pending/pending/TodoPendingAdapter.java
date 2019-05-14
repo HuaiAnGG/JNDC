@@ -19,8 +19,8 @@ import google.architecture.pending.databinding.TodoPendingItemBinding;
  */
 public class TodoPendingAdapter extends RecyclerView.Adapter<TodoPendingAdapter.PendingViewHolder> {
 
-    List<TodoData.PendingResultsBean> pendingList;
-    TodoPendingClickCallback pendingClickCallback;
+    private List<TodoData.PendingResultsBean> pendingList;
+    private TodoPendingClickCallback pendingClickCallback;
 
     public TodoPendingAdapter(TodoPendingClickCallback callback) {
         this.pendingClickCallback = callback;
@@ -46,17 +46,17 @@ public class TodoPendingAdapter extends RecyclerView.Adapter<TodoPendingAdapter.
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
                     TodoData.PendingResultsBean oldData = pendingList.get(oldItemPosition);
                     TodoData.PendingResultsBean newData = list.get(newItemPosition);
-                    return oldData.getTitle() == newData.getTitle();
+                    return oldData.getTitle().equals(newData.getTitle());
                 }
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
                     TodoData.PendingResultsBean oldData = pendingList.get(oldItemPosition);
                     TodoData.PendingResultsBean newData = list.get(newItemPosition);
-                    return oldData.getTitle() == newData.getTitle()
+                    return oldData.getTitle().equals(newData.getTitle())
                             && oldData.getIcon() == newData.getIcon()
-                            && oldData.getAuthor() == newData.getAuthor()
-                            && oldData.getUpdateTime() == newData.getUpdateTime();
+                            && oldData.getAuthor().equals(newData.getAuthor())
+                            && oldData.getUpdateTime().equals(newData.getUpdateTime());
                 }
             });
             pendingList = list;
@@ -81,13 +81,13 @@ public class TodoPendingAdapter extends RecyclerView.Adapter<TodoPendingAdapter.
 
     @Override
     public int getItemCount() {
-        return pendingList == null ? null : pendingList.size();
+        return pendingList == null ? 0 : pendingList.size();
     }
 
     static class PendingViewHolder extends RecyclerView.ViewHolder {
         TodoPendingItemBinding binding;
 
-        public PendingViewHolder(TodoPendingItemBinding binding) {
+        PendingViewHolder(TodoPendingItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }

@@ -10,20 +10,14 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.wyt.searchbox.SearchFragment;
 import com.wyt.searchbox.custom.IOnSearchClickListener;
 
 import google.architecture.common.base.ARouterPath;
 import google.architecture.common.base.BaseActivity;
-import google.architecture.coremodel.datamodel.http.entities.LoginData;
-import google.architecture.coremodel.datamodel.http.entities.TodoData;
 import google.architecture.coremodel.datamodel.http.entities.VideoListData;
 import google.architecture.coremodel.viewmodel.ViewModelProviders;
 import google.architecture.pending.R;
-import google.architecture.pending.TodoFragment;
-import google.architecture.pending.TodoViewModel;
 import google.architecture.pending.databinding.ActivityVideoBinding;
 
 @Route(path = ARouterPath.CONSOLE_VIDEO_ATY)

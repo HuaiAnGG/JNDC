@@ -9,21 +9,13 @@ import android.support.annotation.NonNull;
 
 import com.apkfuns.logutils.LogUtils;
 
-import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 
-import google.architecture.coremodel.datamodel.http.ApiClient;
-import google.architecture.coremodel.datamodel.http.ApiConstants;
 import google.architecture.coremodel.datamodel.http.repository.DynamicDataRepository;
-import google.architecture.coremodel.datamodel.http.service.DynamicApiService;
-import google.architecture.coremodel.util.JsonUtil;
 import google.architecture.coremodel.util.SwitchSchedulers;
 import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-import okhttp3.ResponseBody;
 
 /**
  * Created by dxx on 2017/11/20.
@@ -34,25 +26,25 @@ public class BaseViewModel<T> extends AndroidViewModel {
     //生命周期观察的数据
     private MutableLiveData<T>  liveObservableData = new MutableLiveData<>();
     //UI使用可观察的数据 ObservableField是一个包装类
-    public ObservableField<T> uiObservableData = new ObservableField<>();
+    private ObservableField<T> uiObservableData = new ObservableField<>();
 
     private final CompositeDisposable mDisposable = new CompositeDisposable();
 
     private static final MutableLiveData ABSENT = new MutableLiveData();
-    {
+    static {
         //noinspection unchecked
         ABSENT.setValue(null);
     }
 
 
-    public BaseViewModel(@NonNull Application application) {
+    BaseViewModel(@NonNull Application application) {
         super(application);
         LogUtils.d("=======BaseViewModel--onCreate=========");
     }
 
     /**
      *
-     * @param fullUrl
+     * @param fullUrl String
      */
     public void loadData( String fullUrl ){
         DynamicDataRepository.getDynamicData(fullUrl, getTClass())
@@ -92,7 +84,7 @@ public class BaseViewModel<T> extends AndroidViewModel {
 
     /**
      * 当主动改变数据时重新设置被观察的数据
-     * @param product
+     * @param product T
      */
     public void setUiObservableData(T product) {
         this.uiObservableData.set(product);

@@ -1,15 +1,5 @@
 package google.architecture.common.util;
 
-import android.text.TextUtils;
-import android.util.Log;
-
-import com.just.core.http.HttpEngine;
-import com.just.core.http.HttpTask;
-import com.just.core.listener.MessageCallbackListener;
-import com.just.core.message.ResponseMessage;
-
-import org.json.ext.JSONObject;
-
 public class CoreUtils {
 
     /*private void init(){

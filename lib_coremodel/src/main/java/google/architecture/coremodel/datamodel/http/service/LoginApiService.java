@@ -1,8 +1,5 @@
 package google.architecture.coremodel.datamodel.http.service;
 
-import com.just.core.message.RequestMessage;
-import com.just.core.message.ResponseMessage;
-
 import google.architecture.coremodel.datamodel.http.entities.LoginRequestMessage;
 import google.architecture.coremodel.datamodel.http.entities.LoginResopnseMessage;
 import io.reactivex.Observable;

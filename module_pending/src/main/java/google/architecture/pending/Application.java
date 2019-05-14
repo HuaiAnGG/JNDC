@@ -1,9 +1,5 @@
 package google.architecture.pending;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.text.TextUtils;
-
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -13,7 +9,6 @@ import com.just.auth.iscs.impl.ISCSAuthImpl;
 import com.just.core.common.CoreConfig;
 import com.showjoy.android.storage.SHStorageManager;
 
-import google.architecture.common.base.ARouterPath;
 import google.architecture.common.base.BaseApplication;
 import google.architecture.common.util.Utils;
 
