@@ -1,8 +1,6 @@
 package google.architecture.coremodel.datamodel.http.repository;
 
 import com.google.gson.Gson;
-import com.just.core.message.RequestMessage;
-import com.just.core.message.ResponseMessage;
 
 import google.architecture.coremodel.datamodel.http.ApiClient;
 import google.architecture.coremodel.datamodel.http.entities.LoginRequestMessage;
@@ -26,11 +24,6 @@ public class LoginDataReository {
                         .getLoginDataService()
                         .getLoginData(requestMessage)
                         .compose(SwitchSchedulers.applySchedulers())
-                        .map(new Function<LoginResopnseMessage, T>() {
-                            @Override
-                            public T apply(LoginResopnseMessage responseMessage) throws Exception {
-                                return JsonUtil.Str2JsonBean(gson.toJson(responseMessage, LoginResopnseMessage.class), clazz);
-                            }
-                        });
+                        .map(responseMessage -> JsonUtil.Str2JsonBean(gson.toJson(responseMessage, LoginResopnseMessage.class), clazz));
     }
 }

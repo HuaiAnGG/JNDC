@@ -6,7 +6,6 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
-import android.content.SharedPreferences;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
@@ -26,8 +25,7 @@ import com.just.core.message.ResponseMessage;
 
 import org.json.ext.JSONObject;
 
-import java.util.List;
-
+import google.architecture.common.util.Constants;
 import google.architecture.common.util.StorageUtils;
 import google.architecture.coremodel.datamodel.http.entities.VideoListData;
 import google.architecture.coremodel.util.NetUtils;
@@ -47,10 +45,9 @@ public class VideoViewModel extends AndroidViewModel {
     }
 
     private LiveData<VideoListData> mLiveObservableData;
-    public ObservableField<VideoListData> uiObservableData;
+    private ObservableField<VideoListData> uiObservableData;
     private final CompositeDisposable mDisposable;
     private HttpTask httpTask;
-    private SharedPreferences mPreference;
     private MutableLiveData<VideoListData> applyData;
 
     public VideoViewModel(@NonNull Application application) {
@@ -67,7 +64,7 @@ public class VideoViewModel extends AndroidViewModel {
                             initHttpTask();
                         }
 
-                        CoreConfig.domainUrl = "http://oa.leadisoft.com:18081/lead_portal";
+                        CoreConfig.domainUrl = Constants.APP_URL;
 
                         Log.e("--Application", "-> " + CoreConfig.domainUrl);
 
@@ -157,17 +154,17 @@ public class VideoViewModel extends AndroidViewModel {
                 });
     }
 
-    public LiveData<VideoListData> getLiveObservableData() {
+    LiveData<VideoListData> getLiveObservableData() {
         return this.mLiveObservableData;
     }
 
-    public void setUiObservableData(VideoListData product) {
+    void setUiObservableData(VideoListData product) {
         this.uiObservableData.set(product);
     }
 
     protected void onCleared() {
         super.onCleared();
         this.mDisposable.clear();
-        LogUtils.d("=======TodoViewModel--onCleared=========");
+        LogUtils.d("=======TodoViewModel--Cleared=========");
     }
 }

@@ -46,18 +46,18 @@ public class TodoNoticeAdapter extends RecyclerView.Adapter<TodoNoticeAdapter.To
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
                     TodoData.NoticeResultsBean oldData = noticeList.get(oldItemPosition);
                     TodoData.NoticeResultsBean newData = list.get(newItemPosition);
-                    return oldData.getTitle() == newData.getTitle();
+                    return oldData.getTitle().equals(newData.getTitle());
                 }
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
                     TodoData.NoticeResultsBean oldData = noticeList.get(oldItemPosition);
                     TodoData.NoticeResultsBean newData = list.get(newItemPosition);
-                    return oldData.getTitle() == newData.getTitle()
+                    return oldData.getTitle().equals(newData.getTitle())
                             && oldData.getIcon() == newData.getIcon()
-                            && oldData.getAuthor() == newData.getAuthor()
-                            && oldData.getReadNum() == newData.getReadNum()
-                            && oldData.getUpdateTime() == newData.getUpdateTime();
+                            && oldData.getAuthor().equals(newData.getAuthor())
+                            && oldData.getReadNum().equals(newData.getReadNum())
+                            && oldData.getUpdateTime().equals(newData.getUpdateTime());
                 }
             });
             noticeList = list;
@@ -83,7 +83,7 @@ public class TodoNoticeAdapter extends RecyclerView.Adapter<TodoNoticeAdapter.To
 
     @Override
     public int getItemCount() {
-        return noticeList == null ? null : noticeList.size();
+        return noticeList == null ? 0 : noticeList.size();
     }
 
     static class TodoNoticeViewHolder extends RecyclerView.ViewHolder {

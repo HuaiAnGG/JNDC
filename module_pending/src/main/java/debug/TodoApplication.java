@@ -4,7 +4,7 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 
 import google.architecture.common.base.BaseApplication;
 
-public class TodoAplication extends BaseApplication {
+public class TodoApplication extends BaseApplication {
 
     @Override
     public void onCreate() {
