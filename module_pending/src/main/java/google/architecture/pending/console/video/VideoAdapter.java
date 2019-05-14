@@ -78,6 +78,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     @Override
     public void onBindViewHolder(VideoViewHolder holder, int position) {
         holder.binding.setEquipmentItem(equipmentList.get(position));
+        holder.binding.setPosition(position);
         holder.binding.executePendingBindings();
     }
 

@@ -1,7 +1,5 @@
 package google.architecture.coremodel.datamodel.http.repository;
 
-import android.util.Log;
-
 import google.architecture.coremodel.datamodel.http.ApiClient;
 import google.architecture.coremodel.util.JsonUtil;
 import google.architecture.coremodel.util.SwitchSchedulers;
@@ -16,18 +14,19 @@ import okhttp3.ResponseBody;
 
 public class DynamicDataRepository {
 
-    public static <T>Observable getDynamicData(String pullUrl, final Class<T> clazz) {
+    public static <T> Observable getDynamicData(String pullUrl, final Class<T> clazz) {
 
         return
                 ApiClient
-                .getDynamicDataService()
-                .getDynamicData(pullUrl)
-                .compose(SwitchSchedulers.applySchedulers())
-                .map((Function<ResponseBody, T>) responseBody -> {
-//                        return JsonUtil.Str2JsonBean(responseBody, clazz);
-                    Log.e("==========", responseBody.toString());
-                    return null;
-                });
+                        .getDynamicDataService()
+                        .getDynamicData(pullUrl)
+                        .compose(SwitchSchedulers.applySchedulers())
+                        .map(new Function<ResponseBody, T>() {
+                            @Override
+                            public T apply(ResponseBody responseBody) throws Exception {
+                                return JsonUtil.Str2JsonBean(responseBody.string(), clazz);
+                            }
+                        });
     }
 
 }

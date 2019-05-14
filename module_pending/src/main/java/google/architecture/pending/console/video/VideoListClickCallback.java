@@ -9,5 +9,5 @@ import google.architecture.coremodel.datamodel.http.entities.VideoListData;
  */
 public interface VideoListClickCallback {
 
-    void onClick(VideoListData.BodyBean.Equipment newsItem);
+    void onClick(VideoListData.BodyBean.Equipment newsItem, int position);
 }

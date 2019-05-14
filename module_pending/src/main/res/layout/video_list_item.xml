@@ -9,18 +9,16 @@
         <variable
             name="equipmentItem"
             type="google.architecture.coremodel.datamodel.http.entities.VideoListData.BodyBean.Equipment" />
-
         <variable
             name="videoItemClickCallback"
             type="google.architecture.pending.console.video.VideoListClickCallback"/>
-
-        <!--<variable-->
-            <!--name="position"-->
-            <!--type="int"/>-->
+        <variable
+            name="position"
+            type="int"/>
     </data>
 
     <RelativeLayout
-        android:onClick="@{() -> videoItemClickCallback.onClick(equipmentItem)}"
+        android:onClick="@{() -> videoItemClickCallback.onClick(equipmentItem, position)}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

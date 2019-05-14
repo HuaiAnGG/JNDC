@@ -59,9 +59,9 @@ public class VideoActivity extends BaseActivity {
     VideoListClickCallback videoListClickCallback
             = new VideoListClickCallback() {
         @Override
-        public void onClick(VideoListData.BodyBean.Equipment equipment) {
+        public void onClick(VideoListData.BodyBean.Equipment equipment, int position) {
             Toast.makeText(VideoActivity.this,
-                    equipment.getDeviceName() , Toast.LENGTH_SHORT).show();
+                    equipment.getDeviceName() + position , Toast.LENGTH_SHORT).show();
         }
     };
 
