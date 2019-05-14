@@ -1,6 +1,5 @@
 package google.architecture.login.activities;
 
-import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -19,7 +18,6 @@ import com.just.core.http.HttpTask;
 import com.just.core.listener.MessageCallbackListener;
 import com.just.core.message.ResponseMessage;
 import com.just.core.util.MD5;
-import com.showjoy.android.storage.SHStorageManager;
 
 import org.json.ext.JSONObject;
 
@@ -35,11 +33,9 @@ import google.architecture.login.databinding.ActivityLoginBinding;
 public class LoginActivity extends BaseActivity {
 
     final String TAG = LoginActivity.class.getSimpleName();
-    private static boolean tokenIsExist = false;
 
     private ActivityLoginBinding binding;
     private HttpTask httpTask;
-    private SharedPreferences mPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +43,6 @@ public class LoginActivity extends BaseActivity {
         ARouter.getInstance().inject(LoginActivity.this);
         binding = DataBindingUtil.setContentView(
                 LoginActivity.this, R.layout.activity_login);
-//        binding.setItemClick(itemClick);
         binding.loginBtn.setOnClickListener(loginBtnOnclickListener);
     }
 
@@ -110,15 +105,8 @@ public class LoginActivity extends BaseActivity {
                                 str = body.toString();
                                 Log.e("======!!!!!====", str);
                             }
-
-//                            mPreferences = getSharedPreferences("token_table", Context.MODE_PRIVATE);
-//                            if (mPreferences != null && !mPreferences.contains("user_token")) {
-//                                SharedPreferences.Editor editor = mPreferences.edit();
+                            // 获取响应头
                             HeaderList headerList = json2HeaderBean(str);
-//                                editor.putString("user_token", headerList.getToken());
-//                                editor.apply();
-//                            }
-
                             //存储到disk的数据，这里会先存到cache，再存储到disk
                             StorageUtils.saveInDisk("SP_TOKEN", "token", headerList.getToken());
 
@@ -130,7 +118,6 @@ public class LoginActivity extends BaseActivity {
                                     // 可以针对性跳转跳转动画
                                     .withTransition(R.anim.activity_up_in, R.anim.activity_up_out)
                                     .navigation(LoginActivity.this);
-
                             return;
                         }
 

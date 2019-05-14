@@ -17,10 +17,10 @@ import google.architecture.common.base.ARouterPath;
 import google.architecture.common.base.BaseActivity;
 import google.architecture.common.base.BaseFragment;
 import google.architecture.common.widget.NoScrollViewPager;
-import google.architecture.specific.nav_helper.BottomNavigationViewHelper;
-import google.architecture.specific.fragments.FragmentAdapter;
 import google.architecture.specific.R;
 import google.architecture.specific.databinding.ActivityMainBinding;
+import google.architecture.specific.fragments.FragmentAdapter;
+import google.architecture.specific.nav_helper.BottomNavigationViewHelper;
 
 @Route(path = ARouterPath.MainAty)
 public class ActivityMain extends BaseActivity {

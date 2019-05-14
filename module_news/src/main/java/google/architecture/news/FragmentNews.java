@@ -104,7 +104,7 @@ public class FragmentNews extends BaseFragment {
 
     /**
      * 订阅数据变化来刷新UI
-     * @param model
+     * @param model NewsViewModel
      */
     private void subscribeToModel(final NewsViewModel model){
         //观察数据变化来刷新UI
@@ -112,7 +112,7 @@ public class FragmentNews extends BaseFragment {
             @Override
             public void onChanged(@Nullable NewsData newsData) {
                 Log.i("danxx", "subscribeToModel onChanged onChanged");
-                Log.i("newsData -------->>>>", newsData.toString());
+                Log.i("newsData -------->>>>", newsData != null ? newsData.toString() : null);
                 model.setUiObservableData(newsData);
                 newsAdapter.setNewsList(newsData.getResults());
             }
