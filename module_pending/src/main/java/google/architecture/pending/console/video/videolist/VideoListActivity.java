@@ -1,4 +1,4 @@
-package google.architecture.pending.console.videolist;
+package google.architecture.pending.console.video.videolist;
 
 import android.arch.lifecycle.Observer;
 import android.databinding.DataBindingUtil;

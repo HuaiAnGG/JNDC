@@ -87,14 +87,16 @@ dependencies {
     api deps.luban
     // gms
     api deps.gms
+    // otto
+    api deps.otto
 
     // ijkplayer
     api deps.ijkplayer.java
     api deps.ijkplayer.armv7a
     api deps.ijkplayer.armv5
-//    api deps.ijkplayer.arm64
+    api deps.ijkplayer.arm64
     api deps.ijkplayer.x86
-//    api deps.ijkplayer.x86_64
+    api deps.ijkplayer.x86_64
     api deps.ijkplayer.exo
 
     api files('libs\\core_auth_iscs_v1.0-release.aar',

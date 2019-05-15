@@ -1,4 +1,4 @@
-package google.architecture.pending.console.videolist;
+package google.architecture.pending.console.video.videolist;
 
 import android.app.Application;
 import android.arch.core.util.Function;

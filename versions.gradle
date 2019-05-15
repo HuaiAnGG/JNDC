@@ -36,6 +36,7 @@
     versions.luban = "1.1.8"
     versions.gms = "16.0.1"
     versions.ijkplayer = "0.8.8"
+    versions.otto = "1.3.8"
     def deps = [:]
 
     def support = [:]
@@ -145,10 +146,11 @@
     deps.qmui = "com.qmuiteam:qmui:$versions.qmui"
     deps.luban = "top.zibin:Luban:$versions.luban"
     deps.gms = "com.google.android.gms:play-services-auth:$versions.gms"
+    deps.otto = "com.squareup:otto:$versions.otto"
     ext.deps = deps
 
     def build_versions = [:]
-    build_versions.min_sdk = 15
+    build_versions.min_sdk = 21
     build_versions.target_sdk = 26
     build_versions.build_tools = "26.0.2"
     ext.build_versions = build_versions

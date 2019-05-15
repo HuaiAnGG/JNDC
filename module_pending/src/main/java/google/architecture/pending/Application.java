@@ -11,6 +11,7 @@ import com.showjoy.android.storage.SHStorageManager;
 
 import google.architecture.common.base.BaseApplication;
 import google.architecture.common.util.Utils;
+import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 /**
  * @description:
@@ -46,6 +47,5 @@ public class Application extends BaseApplication {
         } catch (GooglePlayServicesNotAvailableException e) {
             e.printStackTrace();
         }
-
     }
 }
