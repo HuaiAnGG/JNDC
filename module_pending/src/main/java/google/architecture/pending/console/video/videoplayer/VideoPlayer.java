@@ -7,8 +7,8 @@ import android.view.TextureView;
 import android.view.View;
 
 import com.just.core.common.CoreConfig;
-import com.just.iscs.client.app.Constants;
-import com.warren.basis.util.Cache;
+//import com.just.iscs.client.app.Constants;
+//import com.warren.basis.util.Cache;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -131,7 +131,7 @@ public abstract class VideoPlayer implements View.OnClickListener{
 		}
 		videoData.setStream(streamType);
 
-		Cache.get().put(Constants.DEFAULT_STREAM_SELECT, streamType.toString());
+//		Cache.get().put(Constants.DEFAULT_STREAM_SELECT, streamType.toString());
 
 		if (statusPlay == 2) {
 			stopPlay();

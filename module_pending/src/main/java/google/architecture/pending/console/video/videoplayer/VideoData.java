@@ -2,8 +2,8 @@ package google.architecture.pending.console.video.videoplayer;
 
 import android.text.TextUtils;
 
-import com.just.iscs.client.app.Constants;
-import com.warren.basis.util.Cache;
+//import com.just.iscs.client.app.Constants;
+//import com.warren.basis.util.Cache;
 
 /**
  * <b>
@@ -29,8 +29,8 @@ public class VideoData {
 
 	public VideoData() {
 
-		ipUsed = "out".equals(Cache.get().getString(Constants.DEFAULT_IP_SELECT)) ? IPType.OUTER : IPType.INTRANET;
-		stream = StreamType.valueOf(Cache.get().getString(Constants.DEFAULT_STREAM_SELECT, StreamType.MAIN.toString()));
+//		ipUsed = "out".equals(Cache.get().getString(Constants.DEFAULT_IP_SELECT)) ? IPType.OUTER : IPType.INTRANET;
+//		stream = StreamType.valueOf(Cache.get().getString(Constants.DEFAULT_STREAM_SELECT, StreamType.MAIN.toString()));
 	}
 
 	/**
@@ -51,8 +51,8 @@ public class VideoData {
 		this.chid = chid;
 		this.ch_name = ch_name;
 
-		ipUsed = "out".equals(Cache.get().getString(Constants.DEFAULT_IP_SELECT)) ? IPType.OUTER : IPType.INTRANET;
-		stream = StreamType.valueOf(Cache.get().getString(Constants.DEFAULT_STREAM_SELECT, StreamType.MAIN.toString()));
+//		ipUsed = "out".equals(Cache.get().getString(Constants.DEFAULT_IP_SELECT)) ? IPType.OUTER : IPType.INTRANET;
+//		stream = StreamType.valueOf(Cache.get().getString(Constants.DEFAULT_STREAM_SELECT, StreamType.MAIN.toString()));
 	}
 
 	public String getInIp() {

@@ -4,12 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable
-            name="equipment"
-            type="google.architecture.coremodel.datamodel.http.entities.VideoListData.BodyBean.Equipment"/>
+        <!--<variable-->
+            <!--name="equipment"-->
+            <!--type="google.architecture.coremodel.datamodel.http.entities.VideoListData.BodyBean.Equipment"/>-->
+        <import type="java.util.List" />
+        <import type="android.view.View" />
         <variable
             name="position"
             type="int"/>
+        <variable
+            name="equipmentList"
+            type="List&lt;google.architecture.coremodel.datamodel.http.entities.VideoDetailData.EquipmentBean&gt;" />
     </data>
 
     <LinearLayout
@@ -167,7 +172,7 @@
                         android:textColor="#666666"
                         android:layout_marginTop="@dimen/size_16dp"
                         android:layout_marginLeft="@dimen/size_32dp"
-                        android:text="@string/monitor_video_detail_factory"
+                        tools:text="@string/monitor_video_detail_factory"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -176,7 +181,7 @@
                         android:textColor="#666666"
                         android:layout_marginTop="@dimen/size_16dp"
                         android:layout_marginLeft="@dimen/size_32dp"
-                        android:text="@string/monitor_video_detail_location"
+                        tools:text="@string/monitor_video_detail_location"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 

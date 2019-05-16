@@ -8,14 +8,14 @@ import android.util.Log;
 import android.view.Surface;
 import android.view.TextureView;
 
-import com.just.iscs.client.bean.ImgCapture;
-import com.just.iscs.client.util.IscsUtil;
-import com.warren.basis.Basis;
-import com.warren.basis.util.BitmapUtils;
-import com.warren.basis.util.Dimension;
-import com.warren.basis.util.Run;
-import com.warren.basis.util.TextUtil;
-import com.warren.basis.util.UuidUtil;
+//import com.just.iscs.client.bean.ImgCapture;
+//import com.just.iscs.client.util.IscsUtil;
+//import com.warren.basis.Basis;
+//import com.warren.basis.util.BitmapUtils;
+//import com.warren.basis.util.Dimension;
+//import com.warren.basis.util.Run;
+//import com.warren.basis.util.TextUtil;
+//import com.warren.basis.util.UuidUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -65,7 +65,7 @@ public class IjkSimplePlayer extends VideoPlayer implements IMediaPlayer.OnPrepa
 		if (textureView != null && textureView.getSurfaceTexture() != null) {
 			surface = new Surface(textureView.getSurfaceTexture());
 
-			cacheDir = IscsUtil.getVideoCatchPhotoDir(textureView.getContext());
+//			cacheDir = IscsUtil.getVideoCatchPhotoDir(textureView.getContext());
 		}
 
 
@@ -236,58 +236,58 @@ public class IjkSimplePlayer extends VideoPlayer implements IMediaPlayer.OnPrepa
 		}
 
 		final Bitmap bitmap = textureView.getBitmap();
-		Basis.run(new Run() {
-			@Override
-			public void running() throws Exception {
-
-				File file = new File(path);
-				BitmapUtils.saveBitmap(bitmap, file);
-				File cprFile = Luban.with(textureView.getContext()).load(file).get().get(0);
-
-				post(cprFile);
-			}
-
-			@Override
-			public void runAfterPost(Object... obj) {
-				if (callback != null) {
-					callback.onCaptureDone((File) obj[0], tag);
-				}
-			}
-		});
+//		Basis.run(new Run() {
+//			@Override
+//			public void running() throws Exception {
+//
+//				File file = new File(path);
+//				BitmapUtils.saveBitmap(bitmap, file);
+//				File cprFile = Luban.with(textureView.getContext()).load(file).get().get(0);
+//
+//				post(cprFile);
+//			}
+//
+//			@Override
+//			public void runAfterPost(Object... obj) {
+//				if (callback != null) {
+//					callback.onCaptureDone((File) obj[0], tag);
+//				}
+//			}
+//		});
 	}
 
 	/**
 	 * 抓图
 	 */
-	public void capture(final ImgCapture imgCapture) {
-
-		final Bitmap bitmap = textureView.getBitmap();
-		Basis.run(new Run() {
-			@Override
-			public void running() throws Exception {
-
-				if (cacheDir == null) {
-					cacheDir = IscsUtil.getVideoCatchPhotoDir(textureView.getContext());
-				}
-
-				File file = new File(cacheDir, UuidUtil.randomUUID() + ".jpg");
-				BitmapUtils.saveBitmap(bitmap, file);
-				File cprFile = Luban.with(textureView.getContext()).load(file).get().get(0);
-
-
-				imgCapture.setStatus(1);
-				imgCapture.setPath(cprFile.getAbsolutePath());
-				post(cprFile);
-			}
-
-			@Override
-			public void runAfterPost(Object... obj) {
-				if (callback != null) {
-					callback.onCaptureDone((File) obj[0], 1);
-				}
-			}
-		});
-	}
+//	public void capture(final ImgCapture imgCapture) {
+//
+//		final Bitmap bitmap = textureView.getBitmap();
+//		Basis.run(new Run() {
+//			@Override
+//			public void running() throws Exception {
+//
+//				if (cacheDir == null) {
+//					cacheDir = IscsUtil.getVideoCatchPhotoDir(textureView.getContext());
+//				}
+//
+//				File file = new File(cacheDir, UuidUtil.randomUUID() + ".jpg");
+//				BitmapUtils.saveBitmap(bitmap, file);
+//				File cprFile = Luban.with(textureView.getContext()).load(file).get().get(0);
+//
+//
+//				imgCapture.setStatus(1);
+//				imgCapture.setPath(cprFile.getAbsolutePath());
+//				post(cprFile);
+//			}
+//
+//			@Override
+//			public void runAfterPost(Object... obj) {
+//				if (callback != null) {
+//					callback.onCaptureDone((File) obj[0], 1);
+//				}
+//			}
+//		});
+//	}
 
 	@Override
 	public void unMute() {
@@ -314,12 +314,12 @@ public class IjkSimplePlayer extends VideoPlayer implements IMediaPlayer.OnPrepa
 
 		try{
 			if (surface != null && surface.isValid()) {
-				int size = Math.max(Dimension.get().getScreenWidth(), Dimension.get().getScreenHeight());
-				Canvas canvas = surface.lockCanvas(new Rect(0, 0, size, size));
-				if (canvas != null) {
-					canvas.drawColor(0xff000000);
-					surface.unlockCanvasAndPost(canvas);
-				}
+//				int size = Math.max(Dimension.get().getScreenWidth(), Dimension.get().getScreenHeight());
+//				Canvas canvas = surface.lockCanvas(new Rect(0, 0, size, size));
+//				if (canvas != null) {
+//					canvas.drawColor(0xff000000);
+//					surface.unlockCanvasAndPost(canvas);
+//				}
 			}
 		}
 		catch (Exception e){

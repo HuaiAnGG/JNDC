@@ -69,6 +69,8 @@ public class VideoListActivity extends BaseActivity {
                     Log.d("VideoListClickCallback", "onClick: " + equipment.getDeviceName() + "\t" + position);
                     ARouter.getInstance()
                             .build(ARouterPath.CONSOLE_VIDEO_DETAIL_ATY)
+                            // 传参position
+                            .withInt("position", position)
                             .withTransition(R.anim.activity_up_in, R.anim.activity_up_out)
                             .navigation(getApplicationContext());
                     break;

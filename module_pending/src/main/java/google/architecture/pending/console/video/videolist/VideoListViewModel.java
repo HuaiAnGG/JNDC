@@ -167,6 +167,6 @@ public class VideoListViewModel extends AndroidViewModel {
     protected void onCleared() {
         super.onCleared();
         this.mDisposable.clear();
-        LogUtils.d("=======TodoViewModel--Cleared=========");
+        LogUtils.d("=======VideoListViewModel--Cleared=========");
     }
 }

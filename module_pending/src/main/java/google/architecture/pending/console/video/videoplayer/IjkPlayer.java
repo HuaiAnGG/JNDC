@@ -12,16 +12,16 @@ import com.just.core.common.CoreConfig;
 import com.just.core.http.HttpEngine;
 import com.just.core.http.HttpTask;
 import com.just.core.message.ResponseMessage;
-import com.just.iscs.client.app.Cmd;
-import com.just.iscs.client.app.Config;
-import com.just.iscs.client.util.IscsUtil;
-import com.warren.basis.Basis;
-import com.warren.basis.model.AbsResp;
-import com.warren.basis.model.ModelNet;
-import com.warren.basis.util.BitmapUtils;
-import com.warren.basis.util.Dimension;
-import com.warren.basis.util.Run;
-import com.warren.basis.util.TextUtil;
+//import com.just.iscs.client.app.Cmd;
+//import com.just.iscs.client.app.Config;
+//import com.just.iscs.client.util.IscsUtil;
+//import com.warren.basis.Basis;
+//import com.warren.basis.model.AbsResp;
+//import com.warren.basis.model.ModelNet;
+//import com.warren.basis.util.BitmapUtils;
+//import com.warren.basis.util.Dimension;
+//import com.warren.basis.util.Run;
+//import com.warren.basis.util.TextUtil;
 
 import org.json.ext.JSONObject;
 
@@ -78,17 +78,17 @@ public class IjkPlayer extends VideoPlayer implements IMediaPlayer.OnPreparedLis
 			surface = new Surface(textureView.getSurfaceTexture());
 		}
 
-		modelKeepAlive = new ModelNet(ModelNet.B011, Cmd.VIDEO_KEEP_ALIVE, new AbsResp() {
-			@Override
-			public void onSuccess(String str) {
-				super.onSuccess(str);
-			}
-
-			@Override
-			public void onFail(String status, String info) {
-				super.onFail(status, info);
-			}
-		});
+//		modelKeepAlive = new ModelNet(ModelNet.B011, Cmd.VIDEO_KEEP_ALIVE, new AbsResp() {
+//			@Override
+//			public void onSuccess(String str) {
+//				super.onSuccess(str);
+//			}
+//
+//			@Override
+//			public void onFail(String status, String info) {
+//				super.onFail(status, info);
+//			}
+//		});
 
 		running = true;
 	}
@@ -115,7 +115,7 @@ public class IjkPlayer extends VideoPlayer implements IMediaPlayer.OnPreparedLis
 						modelKeepAlive.setParams("sessionid", sessionId);
 						modelKeepAlive.doTask();
 
-						Thread.sleep(Config.PLAYER_KEEP_ALIVE_INTERVAL * 1000);
+//						Thread.sleep(Config.PLAYER_KEEP_ALIVE_INTERVAL * 1000);
 					}
 				}
 				catch (Exception ignored){
@@ -131,95 +131,95 @@ public class IjkPlayer extends VideoPlayer implements IMediaPlayer.OnPreparedLis
 
 		setStatusPlay(2);
 
-		HttpTask task = new HttpTask(ModelNet.B000, Cmd.GLOBAL_BASECFG);
-		task.setItemParaListWithKeys("own_type", "android", "update_time", "");
-		task.setShowWaitingDlg(false);
-
-		HttpEngine.getInstance().emit(task);
-		ResponseMessage responseMessage = task.getResponseMessage();
-		Log.e("--HttpUtil", "[HTTP RS]" + responseMessage.toJSON());
-
-		String status = responseMessage.header.getStatus();
-		if ("200".equals(status)) {
-			JSONObject body = responseMessage.body.getBody();
-			String str = body.optString("list");
-
-			if (TextUtils.isEmpty(str)) {
-				str = body.toString();
-			}
-
-			HashMap<String, String> map = IscsUtil.parseConfig(str);
-			if (map == null) {
-				postLoginFail("获取配置参数出错");
-				return;
-			}
-
-			serverSupport = map.get("media_server_net_support");
-			if (TextUtils.isEmpty(serverSupport)) {
-				postLoginFail("获取配置参数出错");
-				return;
-			}
-		}
-		else {
-
-			postLoginFail("获取配置参数出错");
-			return;
-		}
-
-		task = new HttpTask(ModelNet.B011, Cmd.VIDEO_DEVICE_URL);
-		task.setShowWaitingDlg(false);
-		task.setItemParaListWithKeys(
-				"deviceid", deviceId,
-				"protocol", "RTMP",
-				"code", videoData.getStream().getCode(),
-				"source_type", videoData.getIpUsed() == VideoData.IPType.OUTER ? "public" : "private");
-
-		HttpEngine.getInstance().emit(task);
-		responseMessage = task.getResponseMessage();
-		Log.e("--HttpUtil", "[HTTP RS]" + responseMessage.toJSON());
-
-		status = responseMessage.header.getStatus();
-		if ("200".equals(status)) {
-
-			try{
-				JSONObject json = responseMessage.body.getBody();
-				playPath = json.getString("play_url");
-				sessionId = json.getString("sessionid");
-
-				Log.e("--IjkPlayer", "playPath=" + playPath + " sessionId=" + sessionId);
-
-				postLoginSuccess();
-
-				if (getStatusPlay() != 3) {
-
-					CoreConfig.task().post(new Runnable() {
-						@Override
-						public void run() {
-							startMediaPlay();
-						}
-					});
-				}
-			}
-			catch (Exception e){
-				e.printStackTrace();
-
-				postLoginFail("处理出错");
-			}
-		}
-		else if ("309".equals(status)){
-			setStatusPlay(-1);
-			sessionId = null;
-
-			postLoginFail("未获取到视频信息");
-		}
-		else {
-			String info = responseMessage.header.getInfo();
-
-			setStatusPlay(-1);
-			sessionId = null;
-
-			postLoginFail(info);
-		}
+//		HttpTask task = new HttpTask(ModelNet.B000, Cmd.GLOBAL_BASECFG);
+//		task.setItemParaListWithKeys("own_type", "android", "update_time", "");
+//		task.setShowWaitingDlg(false);
+//
+//		HttpEngine.getInstance().emit(task);
+//		ResponseMessage responseMessage = task.getResponseMessage();
+//		Log.e("--HttpUtil", "[HTTP RS]" + responseMessage.toJSON());
+//
+//		String status = responseMessage.header.getStatus();
+//		if ("200".equals(status)) {
+//			JSONObject body = responseMessage.body.getBody();
+//			String str = body.optString("list");
+//			Log.e("==============", str );
+//			if (TextUtils.isEmpty(str)) {
+//				str = body.toString();
+//			}
+//
+//			HashMap<String, String> map = IscsUtil.parseConfig(str);
+//			if (map == null) {
+//				postLoginFail("获取配置参数出错");
+//				return;
+//			}
+//
+//			serverSupport = map.get("media_server_net_support");
+//			if (TextUtils.isEmpty(serverSupport)) {
+//				postLoginFail("获取配置参数出错");
+//				return;
+//			}
+//		}
+//		else {
+//
+//			postLoginFail("获取配置参数出错");
+//			return;
+//		}
+//
+//		task = new HttpTask(ModelNet.B011, Cmd.VIDEO_DEVICE_URL);
+//		task.setShowWaitingDlg(false);
+//		task.setItemParaListWithKeys(
+//				"deviceid", deviceId,
+//				"protocol", "RTMP",
+//				"code", videoData.getStream().getCode(),
+//				"source_type", videoData.getIpUsed() == VideoData.IPType.OUTER ? "public" : "private");
+//
+//		HttpEngine.getInstance().emit(task);
+//		responseMessage = task.getResponseMessage();
+//		Log.e("--HttpUtil", "[HTTP RS]" + responseMessage.toJSON());
+//
+//		status = responseMessage.header.getStatus();
+//		if ("200".equals(status)) {
+//
+//			try{
+//				JSONObject json = responseMessage.body.getBody();
+//				playPath = json.getString("play_url");
+//				sessionId = json.getString("sessionid");
+//
+//				Log.e("--IjkPlayer", "playPath=" + playPath + " sessionId=" + sessionId);
+//
+//				postLoginSuccess();
+//
+//				if (getStatusPlay() != 3) {
+//
+//					CoreConfig.task().post(new Runnable() {
+//						@Override
+//						public void run() {
+//							startMediaPlay();
+//						}
+//					});
+//				}
+//			}
+//			catch (Exception e){
+//				e.printStackTrace();
+//
+//				postLoginFail("处理出错");
+//			}
+//		}
+//		else if ("309".equals(status)){
+//			setStatusPlay(-1);
+//			sessionId = null;
+//
+//			postLoginFail("未获取到视频信息");
+//		}
+//		else {
+//			String info = responseMessage.header.getInfo();
+//
+//			setStatusPlay(-1);
+//			sessionId = null;
+//
+//			postLoginFail(info);
+//		}
 	}
 
 	@Override
@@ -386,24 +386,24 @@ public class IjkPlayer extends VideoPlayer implements IMediaPlayer.OnPreparedLis
 		}
 
 		final Bitmap bitmap = textureView.getBitmap();
-		Basis.run(new Run() {
-			@Override
-			public void running() throws Exception {
-
-				File file = new File(path);
-				BitmapUtils.saveBitmap(bitmap, file);
-				File cprFile = Luban.with(textureView.getContext()).load(file).get().get(0);
-
-				post(cprFile);
-			}
-
-			@Override
-			public void runAfterPost(Object... obj) {
-				if (callback != null) {
-					callback.onCaptureDone((File) obj[0], tag);
-				}
-			}
-		});
+//		Basis.run(new Run() {
+//			@Override
+//			public void running() throws Exception {
+//
+//				File file = new File(path);
+//				BitmapUtils.saveBitmap(bitmap, file);
+//				File cprFile = Luban.with(textureView.getContext()).load(file).get().get(0);
+//
+//				post(cprFile);
+//			}
+//
+//			@Override
+//			public void runAfterPost(Object... obj) {
+//				if (callback != null) {
+//					callback.onCaptureDone((File) obj[0], tag);
+//				}
+//			}
+//		});
 	}
 
 	@Override
@@ -429,19 +429,19 @@ public class IjkPlayer extends VideoPlayer implements IMediaPlayer.OnPreparedLis
 	 */
 	public void drawBlack() {
 
-		try{
-			if (surface != null && surface.isValid()) {
-				int size = Math.max(Dimension.get().getScreenWidth(), Dimension.get().getScreenHeight());
-				Canvas canvas = surface.lockCanvas(new Rect(0, 0, size, size));
-				if (canvas != null) {
-					canvas.drawColor(0xff000000);
-					surface.unlockCanvasAndPost(canvas);
-				}
-			}
-		}
-		catch (Exception e){
-			e.printStackTrace();
-		}
+//		try{
+//			if (surface != null && surface.isValid()) {
+//				int size = Math.max(Dimension.get().getScreenWidth(), Dimension.get().getScreenHeight());
+//				Canvas canvas = surface.lockCanvas(new Rect(0, 0, size, size));
+//				if (canvas != null) {
+//					canvas.drawColor(0xff000000);
+//					surface.unlockCanvasAndPost(canvas);
+//				}
+//			}
+//		}
+//		catch (Exception e){
+//			e.printStackTrace();
+//		}
 	}
 
 	@Override
@@ -478,12 +478,12 @@ public class IjkPlayer extends VideoPlayer implements IMediaPlayer.OnPreparedLis
 
 	@Override
 	public boolean isOutAddrEnable() {
-		return TextUtil.isEmpty(serverSupport) || "0".equals(serverSupport) || "2".equals(serverSupport);
+		return TextUtils.isEmpty(serverSupport) || "0".equals(serverSupport) || "2".equals(serverSupport);
 	}
 
 	@Override
 	public boolean isInAddrEnable() {
-		return TextUtil.isEmpty(serverSupport) || "0".equals(serverSupport) || "1".equals(serverSupport);
+		return TextUtils.isEmpty(serverSupport) || "0".equals(serverSupport) || "1".equals(serverSupport);
 	}
 
 	public String getServerSupport() {
