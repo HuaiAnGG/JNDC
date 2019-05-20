@@ -70,7 +70,6 @@ public class ActivityMain extends BaseActivity {
         BaseFragment fragmentNews = (BaseFragment) ARouter.getInstance().build(ARouterPath.NewsListFgt).navigation();
         BaseFragment fragmentAbout = (BaseFragment) ARouter.getInstance().build(ARouterPath.AboutFgt).navigation();
         BaseFragment fragmentPending = (BaseFragment) ARouter.getInstance().build(ARouterPath.PendingFgt).navigation();
-//        BaseFragment fragmentPending = (BaseFragment) new To
 
         mFragments.add(fragmentNews);
         mFragments.add(fragmentPending);

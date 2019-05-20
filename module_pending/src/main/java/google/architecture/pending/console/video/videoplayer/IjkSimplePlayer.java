@@ -36,8 +36,8 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
  * 日期: 2018-07-10
  * </pre>
  */
-public class IjkSimplePlayer extends VideoPlayer implements IMediaPlayer.OnPreparedListener, IMediaPlayer.OnInfoListener,
-		IMediaPlayer.OnErrorListener {
+public class IjkSimplePlayer extends VideoPlayer implements IMediaPlayer.OnPreparedListener,
+		IMediaPlayer.OnInfoListener, IMediaPlayer.OnErrorListener {
 
 	private IMediaPlayer mediaPlayer = null;
 

@@ -47,4 +47,5 @@ dependencies {
     api project(':module_pending')
 
     annotationProcessor deps.arouter.compiler
+    testImplementation 'junit:junit:4.12'
 }

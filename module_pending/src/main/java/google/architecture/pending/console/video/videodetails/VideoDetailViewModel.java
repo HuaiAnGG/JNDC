@@ -18,6 +18,7 @@ import java.util.List;
 
 import google.architecture.common.util.SPUtils;
 import google.architecture.coremodel.datamodel.http.entities.VideoDetailData;
+import google.architecture.coremodel.datamodel.http.entities.VideoListData;
 import google.architecture.coremodel.util.NetUtils;
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -34,11 +35,15 @@ public class VideoDetailViewModel extends AndroidViewModel {
     // TODO: Implement the ViewModel
     private static final MutableLiveData ABSENT = new MutableLiveData();
 
-    private LiveData<List<VideoDetailData.EquipmentBean>> mLiveObservableData;
-    private ObservableField<List<VideoDetailData.EquipmentBean>> uiObservableData;
+    public LiveData<VideoDetailData.EquipmentBean> getmLiveObservableData() {
+        return mLiveObservableData;
+    }
+
+    private LiveData<VideoDetailData.EquipmentBean> mLiveObservableData;
+    private ObservableField<VideoDetailData.EquipmentBean> uiObservableData;
     private final CompositeDisposable mDisposable;
 //    private HttpTask httpTask;
-    private MutableLiveData<List<VideoDetailData.EquipmentBean>> applyData;
+    private MutableLiveData<VideoDetailData.EquipmentBean> applyData;
 
 
     public VideoDetailViewModel(@NonNull Application application) {
@@ -48,25 +53,25 @@ public class VideoDetailViewModel extends AndroidViewModel {
         this.mDisposable = new CompositeDisposable();
         Log.i("danxx", "TodoViewModel------>");
         this.mLiveObservableData = Transformations.switchMap(NetUtils.netConnected(application),
-                new Function<Boolean, LiveData<List<VideoDetailData.EquipmentBean>>>() {
-                    public LiveData<List<VideoDetailData.EquipmentBean>> apply(Boolean isNetConnected) {
+                new Function<Boolean, LiveData<VideoDetailData.EquipmentBean>>() {
+                    public LiveData<VideoDetailData.EquipmentBean> apply(Boolean isNetConnected) {
                         applyData = new MutableLiveData();
                         String listStr = SPUtils.getStringInCache("EQUIPMENT_LIST", "bodyBean", "");
-
+                        int itemPosition = SPUtils.getIntInCache("VIDEO_LIST_POSITION", "position", 0);
                         Log.e("VideoDetailViewModel", "apply: " + listStr);
                         VideoDetailData videoDetailData = new Gson().fromJson(listStr,
                                 new TypeToken<VideoDetailData>(){}.getType());
-                        applyData.setValue(videoDetailData.getList());
+                        applyData.setValue(videoDetailData.getList().get(itemPosition));
                         return applyData;
                     }
                 });
     }
 
-    LiveData<List<VideoDetailData.EquipmentBean>> getLiveObservableData() {
+    LiveData<VideoDetailData.EquipmentBean> getLiveObservableData() {
         return this.mLiveObservableData;
     }
 
-    void setUiObservableData(List<VideoDetailData.EquipmentBean> product) {
+    void setUiObservableData(VideoDetailData.EquipmentBean product) {
         this.uiObservableData.set(product);
     }
 

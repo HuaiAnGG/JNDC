@@ -263,6 +263,7 @@ public class IjkPlayer extends VideoPlayer implements IMediaPlayer.OnPreparedLis
 		mediaPlayer = ijkMediaPlayer;
 
 		try {
+			// 数据源
 			mediaPlayer.setDataSource(playPath);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -280,7 +281,9 @@ public class IjkPlayer extends VideoPlayer implements IMediaPlayer.OnPreparedLis
 			surface = new Surface(textureView.getSurfaceTexture());
 		}
 
-		mediaPlayer.setSurface(surface); // 给mediaPlayer设置视图
+		// 给mediaPlayer设置视图
+		mediaPlayer.setSurface(surface);
+		// 开始加载
 		mediaPlayer.prepareAsync();
 		mediaPlayer.setOnPreparedListener(this);
 		mediaPlayer.setOnInfoListener(this);

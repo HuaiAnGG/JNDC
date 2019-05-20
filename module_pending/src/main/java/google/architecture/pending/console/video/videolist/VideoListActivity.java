@@ -14,6 +14,7 @@ import com.wyt.searchbox.custom.IOnSearchClickListener;
 
 import google.architecture.common.base.ARouterPath;
 import google.architecture.common.base.BaseActivity;
+import google.architecture.common.util.SPUtils;
 import google.architecture.coremodel.datamodel.http.entities.VideoListData;
 import google.architecture.coremodel.viewmodel.ViewModelProviders;
 import google.architecture.pending.R;
@@ -66,6 +67,7 @@ public class VideoListActivity extends BaseActivity {
                     /**
                      * 转跳到 VideoDetailActivity
                      */
+                    SPUtils.saveInDisk("VIDEO_LIST_POSITION", "position", position);
                     Log.d("VideoListClickCallback", "onClick: " + equipment.getDeviceName() + "\t" + position);
                     ARouter.getInstance()
                             .build(ARouterPath.CONSOLE_VIDEO_DETAIL_ATY)

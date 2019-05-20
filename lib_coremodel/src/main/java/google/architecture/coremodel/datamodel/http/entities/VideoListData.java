@@ -140,6 +140,15 @@ public class VideoListData {
             private int port;
             private String resourceId;
             private int subType;
+            private String factoryName;
+
+            public String getFactoryName() {
+                return factoryName;
+            }
+
+            public void setFactoryName(String factoryName) {
+                this.factoryName = factoryName;
+            }
 
             public String getAuthPassword() {
                 return authPassword;

@@ -15,7 +15,7 @@ public class SPUtils {
      * @param key 关键字
      * @param value 值
      */
-    public static void saveInCache(String module, String key, String value){
+    public static <T> void saveInCache(String module, String key, T value){
         SHStorageManager.putToCache(module, key, value);
     }
 
@@ -26,7 +26,7 @@ public class SPUtils {
      * @param key 关键字
      * @param value 值
      */
-    public static void saveInDisk(String module, String key, String value){
+    public static <T> void saveInDisk(String module, String key, T value){
         SHStorageManager.putToDisk(module, key, value);
     }
 
